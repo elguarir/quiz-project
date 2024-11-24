@@ -32,8 +32,8 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: none;" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="225.0" layoutY="277.0" prefHeight="35.0" prefWidth="240.0" promptText="Enter your username" />
-            <PasswordField layoutX="225.0" layoutY="364.0" prefHeight="34.0" prefWidth="239.0" promptText="Enter your password" />
+            <TextField fx:id="emailField" layoutX="225.0" layoutY="277.0" prefHeight="35.0" prefWidth="240.0" promptText="Enter your username" />
+            <PasswordField fx:id="passwordField" layoutX="225.0" layoutY="364.0" prefHeight="34.0" prefWidth="239.0" promptText="Enter your password" />
             <Label layoutX="72.0" layoutY="278.0" prefHeight="32.0" prefWidth="113.0" text="Username" textFill="#0d00ff">
                <font>
                   <Font size="21.0" />
@@ -54,7 +54,7 @@
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="381.0" layoutY="429.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #2519cd;" text=" Login" textFill="WHITE">
+            <Button layoutX="381.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #2519cd;" text=" Login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>

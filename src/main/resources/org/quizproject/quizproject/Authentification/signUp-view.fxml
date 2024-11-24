@@ -32,7 +32,7 @@
    <right>
         <AnchorPane prefHeight="700.0" prefWidth="559.0" style="-fx-background-color: none;" BorderPane.alignment="CENTER">
             <children>
-                <PasswordField layoutX="261.0" layoutY="414.0" prefHeight="34.0" prefWidth="239.0" promptText="Confirm your password" />
+                <PasswordField fx:id="confirmPasswordField" layoutX="261.0" layoutY="414.0" prefHeight="34.0" prefWidth="239.0" promptText="Confirm your password" />
                 <Label layoutX="59.0" layoutY="351.0" prefHeight="32.0" prefWidth="169.0" text="Password" textFill="#0d00ff">
                     <font>
                         <Font size="18.0" />
@@ -48,9 +48,9 @@
                         <Font name="System Italic" size="12.0" />
                     </font>
                 </Button>
-                <Button layoutX="432.0" layoutY="481.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #2519cd;" text="Registre" textFill="WHITE" />
-            <TextField layoutX="261.0" layoutY="286.0" prefHeight="35.0" prefWidth="240.0" promptText="Enter your username" />
-            <TextField layoutX="261.0" layoutY="224.0" prefHeight="35.0" prefWidth="240.0" promptText="Enter your name" />
+                <Button layoutX="432.0" layoutY="481.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #2519cd;" text="Registre" textFill="WHITE" />
+            <TextField fx:id="usernameField" layoutX="261.0" layoutY="286.0" prefHeight="35.0" prefWidth="240.0" promptText="Enter your username" />
+            <TextField fx:id="fullnameField" layoutX="261.0" layoutY="224.0" prefHeight="35.0" prefWidth="240.0" promptText="Enter your name" />
             <Label layoutX="59.0" layoutY="288.0" prefHeight="32.0" prefWidth="113.0" text="Username" textFill="#0d00ff">
                <font>
                   <Font size="18.0" />
@@ -61,7 +61,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <PasswordField layoutX="262.0" layoutY="350.0" prefHeight="34.0" prefWidth="239.0" promptText="Enter your password" />
+            <PasswordField fx:id="passwordField" layoutX="262.0" layoutY="350.0" prefHeight="34.0" prefWidth="239.0" promptText="Enter your password" />
             <Label layoutX="198.0" layoutY="93.0" prefHeight="32.0" prefWidth="113.0" text="Registration " textFill="#63a7d7">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
