@@ -101,7 +101,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.quizproject.quizproject/org.quizproject.quizproject.HelloApplication
+                            <mainClass>org.quizproject.quizproject/org.quizproject.quizproject.Authentification.Login
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

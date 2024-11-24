@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.quizproject.quizproject.Authentification.SignUpController">
+    <left>
+        <AnchorPane prefHeight="900.0" prefWidth="343.0" style="-fx-background-color: #2519cd;" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="105.0" layoutY="282.0" prefHeight="59.0" prefWidth="158.0" text="QuiZzy" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold Italic" size="41.0" />
+                    </font>
+                </Label>
+                <Line endX="100.0" layoutX="177.0" layoutY="350.0" startX="-100.0" stroke="#09fffb" />
+                <Label layoutX="83.0" layoutY="350.0" prefHeight="42.0" prefWidth="189.0" text="Where curiosity meets challenge" textFill="WHITE" />
+                <Label layoutX="67.0" layoutY="362.0" prefHeight="42.0" prefWidth="221.0" text="and every question makes you stronger" textFill="WHITE" />
+                <Label layoutX="74.0" layoutY="593.0" prefHeight="42.0" prefWidth="221.0" text="CopyRight (©). all rights reserved" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </left>
+   <right>
+        <AnchorPane prefHeight="700.0" prefWidth="559.0" style="-fx-background-color: none;" BorderPane.alignment="CENTER">
+            <children>
+                <PasswordField layoutX="261.0" layoutY="414.0" prefHeight="34.0" prefWidth="239.0" promptText="Confirm your password" />
+                <Label layoutX="59.0" layoutY="351.0" prefHeight="32.0" prefWidth="169.0" text="Password" textFill="#0d00ff">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="59.0" layoutY="417.0" prefHeight="21.0" prefWidth="202.0" text="Password confirmation" textFill="#0400ff">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Button fx:id="redirectLoginButton" layoutX="63.0" layoutY="544.0" mnemonicParsing="false" onAction="#redirectLoginButtonAction" style="-fx-background-color: #ffff;" text="I have arealdy an account" textFill="#0f94ff">
+                    <font>
+                        <Font name="System Italic" size="12.0" />
+                    </font>
+                </Button>
+                <Button layoutX="432.0" layoutY="481.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #2519cd;" text="Registre" textFill="WHITE" />
+            <TextField layoutX="261.0" layoutY="286.0" prefHeight="35.0" prefWidth="240.0" promptText="Enter your username" />
+            <TextField layoutX="261.0" layoutY="224.0" prefHeight="35.0" prefWidth="240.0" promptText="Enter your name" />
+            <Label layoutX="59.0" layoutY="288.0" prefHeight="32.0" prefWidth="113.0" text="Username" textFill="#0d00ff">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="59.0" layoutY="226.0" prefHeight="32.0" prefWidth="113.0" text="Full name" textFill="#0d00ff">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <PasswordField layoutX="262.0" layoutY="350.0" prefHeight="34.0" prefWidth="239.0" promptText="Enter your password" />
+            <Label layoutX="198.0" layoutY="93.0" prefHeight="32.0" prefWidth="113.0" text="Registration " textFill="#63a7d7">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Line endX="26.0" layoutX="348.0" layoutY="125.0" startX="-100.0" stroke="#011039" />
+            <Line endX="26.0" layoutX="273.0" layoutY="132.0" startX="-100.0" stroke="#819be4" />
+            <Label layoutX="236.0" layoutY="125.0" prefHeight="32.0" prefWidth="113.0" text="Page" textFill="#00406b">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            </children>
+        </AnchorPane>
+   </right>
+</BorderPane>
