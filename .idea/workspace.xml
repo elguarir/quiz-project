@@ -5,13 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5815fcd8-3ac1-466b-bef5-0403c14b46e4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/SignUp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/SignUpController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Authentification/signUp-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Authentification/login-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -23,6 +38,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -32,17 +50,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Worldshop/AppData/Local/SceneBuilder/SceneBuilder.exe"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Login.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SignUp.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Java/javafx-sdk-23.0.1/lib/javafx.web.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\img" />
+      <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources\org\quizproject\quizproject\Authentification" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.quizproject.quizproject.Authentification.Login" />
+      <module name="quiz-project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.quizproject.quizproject.Authentification.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Login" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -80,5 +129,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/quiz_project$Login.ic" NAME="Login Coverage Results" MODIFIED="1732380777843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>org.quizproject.quizproject.Authentification.*</FILTER>
+    </SUITE>
   </component>
 </project>

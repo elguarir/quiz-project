@@ -8,6 +8,7 @@ module org.quizproject.quizproject {
     requires org.kordamp.ikonli.javafx;
     requires eu.hansolo.tilesfx;
 
-    opens org.quizproject.quizproject to javafx.fxml;
-    exports org.quizproject.quizproject;
+    opens org.quizproject.quizproject.Authentification to javafx.fxml;
+
+    exports org.quizproject.quizproject.Authentification;
 }
