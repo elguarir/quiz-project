@@ -25,31 +25,43 @@ public class LoginController {
 
     // Handle login button action
     public void handleLogin(ActionEvent event) {
-        // Fetch input from the fields
-        String email = emailField.getText();
-        String password = passwordField.getText();
-
-        // Create a user object
-        Utilisateur user = new Utilisateur();
-        user.setEmail(email);
-        user.setPassword(password);
-
-        // Authenticate user
-        if (authDao.Login(user)) {
-            // Display success alert
-            Alert successAlert = new Alert(AlertType.INFORMATION);
-            successAlert.setTitle("Login Successful");
-            successAlert.setHeaderText(null);
-            successAlert.setContentText("Welcome, " + user.getEmail() + "! You have logged in successfully.");
-            successAlert.showAndWait();
-        } else {
-            // Display failure alert
-            Alert failureAlert = new Alert(AlertType.ERROR);
-            failureAlert.setTitle("Login Failed");
-            failureAlert.setHeaderText(null);
-            failureAlert.setContentText("Invalid email or password. Please try again.");
-            failureAlert.showAndWait();
+        if (emailField.getText().isEmpty() || passwordField.getText().isEmpty()) {
+            showAlert(AlertType.ERROR, "Input Error", "Please fill in all fields");
+            return;
         }
+
+        try {
+            String email = emailField.getText();
+            String password = passwordField.getText();
+
+            Utilisateur user = new Utilisateur();
+            user.setEmail(email);
+            user.setPassword(password);
+
+            if (authDao.Login(user)) {
+                Alert successAlert = new Alert(AlertType.INFORMATION);
+                successAlert.setTitle("Login Successful");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Welcome, " + user.getEmail() + "! You have logged in successfully.");
+                successAlert.showAndWait();
+            } else {
+                Alert failureAlert = new Alert(AlertType.ERROR);
+                failureAlert.setTitle("Login Failed");
+                failureAlert.setHeaderText(null);
+                failureAlert.setContentText("Invalid email or password. Please try again.");
+                failureAlert.showAndWait();
+            }
+        } catch (RuntimeException e) {
+            showAlert(AlertType.ERROR, "System Error", "An error occurred while processing your request: " + e.getMessage());
+        }
+    }
+
+    private void showAlert(AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     // Handle redirect to SignUp page

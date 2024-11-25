@@ -8,7 +8,7 @@ module org.quizproject.quizproject {
     requires org.kordamp.ikonli.javafx;
     requires eu.hansolo.tilesfx;
     requires java.sql;
-    requires mysql.connector.j;
+    requires mysql.connector.java;
 
     opens org.quizproject.quizproject.Authentification to javafx.fxml;
 
