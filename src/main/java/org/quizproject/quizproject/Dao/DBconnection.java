@@ -48,6 +48,6 @@ public class DBconnection {
     }
 
     public Connection getCon() {
-        return con;
+        return this.con;
     }
 }

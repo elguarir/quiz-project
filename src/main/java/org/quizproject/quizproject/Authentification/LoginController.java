@@ -64,14 +64,11 @@ public class LoginController {
         alert.showAndWait();
     }
 
-    // Handle redirect to SignUp page
+
     public void redirectSignUpButtonAction(ActionEvent event) {
         try {
-            // Load the SignUp view
             FXMLLoader loader = new FXMLLoader(getClass().getResource("signUp-view.fxml"));
             Parent root = loader.load();
-
-            // Get the current stage
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root, 900, 700));
             stage.setTitle("Registration Page");

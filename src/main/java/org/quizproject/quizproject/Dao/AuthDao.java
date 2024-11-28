@@ -1,7 +1,5 @@
 package org.quizproject.quizproject.Dao;
-
 import org.quizproject.quizproject.Model.Utilisateur;
-
 import java.sql.*;
 
 
@@ -25,6 +23,8 @@ public class AuthDao implements AuthDaoInterface{
             System.err.println("Error: " + e);
         }
     }
+
+
 
     @Override
     public boolean Login(Utilisateur user) {
