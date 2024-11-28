@@ -1,7 +1,6 @@
 package org.quizproject.quizproject.Dao;
 
 import org.quizproject.quizproject.Models.Question;
-import org.quizproject.quizproject.Models.Option;
 import java.util.List;
 
 public class QuestionDao {

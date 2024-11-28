@@ -1,9 +1,6 @@
 package org.quizproject.quizproject.Dao;
 
 import org.quizproject.quizproject.Models.Room;
-import org.quizproject.quizproject.Models.RoomParticipant;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RoomDao {
@@ -29,8 +26,9 @@ public class RoomDao {
         // Implementation
     }
 
-    public Room getRoomByCode(String code) {
-        String query = "SELECT * FROM rooms WHERE code = ?";
+    public boolean isCodeCorrect(String code, long roomId) {
+    String query = "SELECT * FROM rooms WHERE code = ? AND id = ?";
         // Implementation
     }
+    
 }
