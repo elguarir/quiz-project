@@ -9,7 +9,7 @@ public class RoomParticipant {
     private String joinedAt;
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -17,7 +17,7 @@ public class RoomParticipant {
     }
 
     public long getRoomId() {
-        return roomId;
+        return this.roomId;
     }
 
     public void setRoomId(long roomId) {
@@ -25,7 +25,7 @@ public class RoomParticipant {
     }
 
     public long getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(long userId) {
@@ -33,7 +33,7 @@ public class RoomParticipant {
     }
 
     public String getIpAddress() {
-        return ipAddress;
+        return this.ipAddress;
     }
 
     public void setIpAddress(String ipAddress) {
@@ -41,7 +41,7 @@ public class RoomParticipant {
     }
 
     public String getJoinedAt() {
-        return joinedAt;
+        return this.joinedAt;
     }
 
     public void setJoinedAt(String joinedAt) {

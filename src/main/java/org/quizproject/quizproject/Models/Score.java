@@ -1,6 +1,8 @@
 
 package org.quizproject.quizproject.Models;
 
+import java.util.List;
+
 public class Score {
     private long id;
     private long roomId;
@@ -10,7 +12,7 @@ public class Score {
     private String completedAt;
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -18,7 +20,7 @@ public class Score {
     }
 
     public long getRoomId() {
-        return roomId;
+        return this.roomId;
     }
 
     public void setRoomId(long roomId) {
@@ -26,7 +28,7 @@ public class Score {
     }
 
     public long getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(long userId) {
@@ -34,7 +36,7 @@ public class Score {
     }
 
     public int getScore() {
-        return score;
+        return this.score;
     }
 
     public void setScore(int score) {
@@ -42,7 +44,7 @@ public class Score {
     }
 
     public int getTimeSpent() {
-        return timeSpent;
+        return this.timeSpent;
     }
 
     public void setTimeSpent(int timeSpent) {
@@ -50,10 +52,11 @@ public class Score {
     }
 
     public String getCompletedAt() {
-        return completedAt;
+        return this.completedAt;
     }
 
     public void setCompletedAt(String completedAt) {
         this.completedAt = completedAt;
     }
+
 }

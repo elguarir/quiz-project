@@ -19,8 +19,8 @@ import java.io.IOException;
 public class SignUpController {
 
     @FXML
-    private TextField nameField;  // Changed from fullnameField
-
+    private TextField nameField; 
+    
     @FXML
     private TextField usernameField;
 
@@ -35,7 +35,7 @@ public class SignUpController {
     @FXML
     public void handleSignUp(ActionEvent event) {
         // Retrieve form data
-        String name = nameField.getText();  // Changed from fullname
+        String name = nameField.getText(); // Changed from fullname
         String email = usernameField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
@@ -53,7 +53,7 @@ public class SignUpController {
 
         // Create a new User object
         User user = new User();
-        user.setName(name);  // Changed from setFullname
+        user.setName(name); // Changed from setFullname
         user.setEmail(email);
         user.setPassword(password);
 
@@ -92,6 +92,5 @@ public class SignUpController {
             e.printStackTrace();
         }
     }
-
 
 }

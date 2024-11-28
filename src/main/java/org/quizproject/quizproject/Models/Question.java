@@ -6,7 +6,7 @@ import java.util.List;
 public class Question {
     private long id;
     private long categoryId;
-    private String difficulty;  // EASY, MEDIUM, HARD
+    private String difficulty; // EASY, MEDIUM, HARD
     private String content;
     private String createdAt;
     private List<Option> options;
@@ -58,4 +58,21 @@ public class Question {
     public void setOptions(List<Option> options) {
         this.options = options;
     }
+
+    // methods
+    public List<Question> getRandomQuestionsByCategory(long categoryId, int limit) {
+        // TODO: query database to get random questions by category
+
+        return null;
+    }
+
+
+    public boolean validateAnswer(long optionId) {
+        return options.stream()
+            .filter(opt -> opt.getId() == optionId)
+            .findFirst()
+            .map(Option::isCorrect)
+            .orElse(false);
+    }
+    
 }

@@ -1,6 +1,8 @@
 
 package org.quizproject.quizproject.Models;
 
+import java.util.List;
+
 public class RoomQuestion {
     private long id;
     private long roomId;
@@ -8,7 +10,7 @@ public class RoomQuestion {
     private int order;
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -16,7 +18,7 @@ public class RoomQuestion {
     }
 
     public long getRoomId() {
-        return roomId;
+        return this.roomId;
     }
 
     public void setRoomId(long roomId) {
@@ -24,7 +26,7 @@ public class RoomQuestion {
     }
 
     public long getQuestionId() {
-        return questionId;
+        return this.questionId;
     }
 
     public void setQuestionId(long questionId) {
@@ -32,10 +34,11 @@ public class RoomQuestion {
     }
 
     public int getOrder() {
-        return order;
+        return this.order;
     }
 
     public void setOrder(int order) {
         this.order = order;
     }
+
 }

@@ -7,7 +7,7 @@ public class Category {
     private String createdAt;
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -15,7 +15,7 @@ public class Category {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -23,7 +23,7 @@ public class Category {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -31,7 +31,7 @@ public class Category {
     }
 
     public String getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public void setCreatedAt(String createdAt) {

@@ -8,7 +8,7 @@ public class Option {
     private long questionId;
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -16,7 +16,7 @@ public class Option {
     }
 
     public String getContent() {
-        return content;
+        return this.content;
     }
 
     public void setContent(String content) {
@@ -24,7 +24,7 @@ public class Option {
     }
 
     public boolean isCorrect() {
-        return isCorrect;
+        return this.isCorrect;
     }
 
     public void setCorrect(boolean correct) {
@@ -32,7 +32,7 @@ public class Option {
     }
 
     public long getQuestionId() {
-        return questionId;
+        return this.questionId;
     }
 
     public void setQuestionId(long questionId) {

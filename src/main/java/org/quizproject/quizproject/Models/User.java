@@ -23,7 +23,7 @@ public class User {
     }
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -31,7 +31,7 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -40,7 +40,7 @@ public class User {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -48,7 +48,7 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -56,11 +56,11 @@ public class User {
     }
 
     public String getAvatar() {
-        return avatar;
+        return this.avatar;
     }
 
     public LocalDateTime getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public void setCreatedAt(LocalDateTime createdAt) {
