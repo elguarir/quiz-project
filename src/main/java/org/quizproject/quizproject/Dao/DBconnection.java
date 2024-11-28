@@ -2,52 +2,48 @@ package org.quizproject.quizproject.Dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 import java.sql.SQLException;
 
 public class DBconnection {
-    private Connection con;
-    private Statement s;
-
+    private static DBconnection instance;
+    private Connection connection;
     private static final String URL = "jdbc:mysql://localhost:3306/quizproject";
+    private static final String USER = "root";
+    private static final String PASSWORD = "moha";
 
-    public DBconnection() {
+    private DBconnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(URL, "root", "moha");
-            System.out.println("Connection established");
-        } catch (Exception e) {
-            System.out.println("Problem with JDBC or XAMPP: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("MySQL JDBC Driver not found", e);
         }
     }
 
-    public Statement getStatement() {
-        try {
-            if (con == null || con.isClosed()) {
-                throw new SQLException("Database connection is not established");
-            }
-            s = con.createStatement();
-        } catch (SQLException e) {
-            System.err.println("Error creating statement: " + e.getMessage());
-            throw new RuntimeException("Failed to create database statement", e);
+    public static synchronized DBconnection getInstance() {
+        if (instance == null) {
+            instance = new DBconnection();
         }
-        return s;
-    }
-
-    public void closeResources() {
-        try {
-            if (s != null) {
-                s.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        } catch (SQLException e) {
-            System.err.println("Error closing resources: " + e.getMessage());
-        }
+        return instance;
     }
 
     public Connection getCon() {
-        return this.con;
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to create database connection", e);
+        }
+        return connection;
+    }
+
+    public void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println("Error closing connection: " + e.getMessage());
+            }
+        }
     }
 }
