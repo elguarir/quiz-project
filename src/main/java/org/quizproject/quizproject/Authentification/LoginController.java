@@ -39,11 +39,20 @@ public class LoginController {
             user.setPassword(password);
 
             if (authDao.Login(user)) {
-                Alert successAlert = new Alert(AlertType.INFORMATION);
-                successAlert.setTitle("Login Successful");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("Welcome, " + user.getEmail() + "! You have logged in successfully.");
-                successAlert.showAndWait();
+                try {
+
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("quizPage-view.fxml"));
+                    Parent root = loader.load();
+
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(root, 900, 700));
+                    stage.setTitle("Registration Page");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
             } else {
                 Alert failureAlert = new Alert(AlertType.ERROR);
                 failureAlert.setTitle("Login Failed");
@@ -67,11 +76,10 @@ public class LoginController {
     // Handle redirect to SignUp page
     public void redirectSignUpButtonAction(ActionEvent event) {
         try {
-            // Load the SignUp view
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("signUp-view.fxml"));
             Parent root = loader.load();
 
-            // Get the current stage
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root, 900, 700));
             stage.setTitle("Registration Page");

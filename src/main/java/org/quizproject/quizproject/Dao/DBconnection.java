@@ -5,16 +5,21 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.SQLException;
 
+import static javafx.application.Application.launch;
+
 public class DBconnection {
     private Connection con;
     private Statement s;
 
-    private static final String URL = "jdbc:mysql://localhost:3306/quizproject";
+   // private static final String URL = "jdbc:mysql://localhost:3306/quizproject";
+    private static final String URL = "jdbc:mysql://localhost:3306/quizGame";
+
 
     public DBconnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(URL, "root", "moha");
+           // con = DriverManager.getConnection(URL, "root", "moha");
+            con = DriverManager.getConnection(URL, "root", "");
             System.out.println("Connection established");
         } catch (Exception e) {
             System.out.println("Problem with JDBC or XAMPP: " + e.getMessage());
@@ -49,5 +54,9 @@ public class DBconnection {
 
     public Connection getCon() {
         return con;
+    }
+
+    public static void main(String [] args){
+        launch();
     }
 }

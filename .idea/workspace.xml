@@ -5,21 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5815fcd8-3ac1-466b-bef5-0403c14b46e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/AuthDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/AuthDaoInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/DBconnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Model/Genre.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Model/Match.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Model/MatchUsers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Model/Option.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Model/Question.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Model/Utilisateur.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controller/QuizPageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controller/RoomOptionsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/quizPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/RoomOptions.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/WinnerPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/quizPage-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Authentification/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Authentification/login-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Authentification/signUp-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Authentification/signUp-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/SignUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/AuthDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/AuthDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/DBconnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/DBconnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +27,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -63,6 +61,7 @@
     "Application.HelloApplication.executor": "Run",
     "Application.Login.executor": "Run",
     "Application.SignUp.executor": "Run",
+    "Application.quizPage.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
@@ -76,6 +75,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources\org\quizproject\quizproject" />
+      <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources\org\quizproject\quizproject\" />
+      <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources" />
       <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\img" />
       <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources\org\quizproject\quizproject\Authentification" />
     </key>
@@ -109,8 +111,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DBconnection" />
         <item itemvalue="Application.Login" />
+        <item itemvalue="Application.DBconnection" />
       </list>
     </recent_temporary>
   </component>
