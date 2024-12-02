@@ -37,7 +37,7 @@ public class AuthDao implements AuthDaoInterface {
             pstmt.setString(1, user.getEmail());
             pstmt.setString(2, user.getPassword());
 
-            // Execute the query
+
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     user.setId(rs.getLong("id"));

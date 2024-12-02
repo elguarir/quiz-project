@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="260.0" prefWidth="265.0" spacing="10.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.quizproject.quizproject.Controller.RoomOptionsController">
+    <children>
+        <Label text="Room Options" textFill="#153fa1">
+            <font>
+                <Font name="Arial Bold" size="25.0" />
+            </font></Label>
+        <Line endX="22.5" startX="-100.0" stroke="#15d0ff" />
+        <Line endX="-20.5" startX="-104.0" stroke="#e62cff" />
+        <HBox spacing="10">
+            <Label text="Room Type:" textFill="#2313d3">
+                <font>
+                    <Font name="Calibri Bold" size="16.0" />
+                </font></Label>
+            <ComboBox fx:id="roomTypeComboBox" prefWidth="150" />
+        </HBox>
+        <HBox fx:id="codeHBox" spacing="10" visible="false">
+            <Label text="Code:" />
+            <TextField fx:id="codeTextField" prefWidth="150" />
+        </HBox>
+        <HBox spacing="10">
+            <Label text="Number of Players:" textFill="#1623ab">
+                <font>
+                    <Font name="Calibri Bold" size="13.0" />
+                </font></Label>
+            <ComboBox fx:id="playersComboBox" prefWidth="150" />
+        </HBox>
+        <HBox spacing="10">
+            <Label text="Quiz Time (2-20 min):" textFill="#2d3cc3">
+                <font>
+                    <Font name="Calibri Bold" size="16.0" />
+                </font></Label>
+            <TextField fx:id="quizTimeTextField" prefWidth="50" />
+        </HBox>
+        <HBox alignment="CENTER" minWidth="-Infinity" prefHeight="50.0" prefWidth="278.0" spacing="20">
+            <Button style="-fx-background-color: #8a80ff;" text="Play Alone" textFill="WHITE" />
+            <Button style="-fx-background-color: #8a80ff;" text="Create" textFill="WHITE" />
+        </HBox>
+    </children>
+</VBox>
