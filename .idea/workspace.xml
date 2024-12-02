@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="5815fcd8-3ac1-466b-bef5-0403c14b46e4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
@@ -16,6 +17,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/ScoreDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/ScoreDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Models/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Models/Category.java" afterDir="false" />
     </list>
+=======
+    <list default="true" id="5815fcd8-3ac1-466b-bef5-0403c14b46e4" name="Changes" comment="" />
+>>>>>>> ec3c166ac4b33a68e63a665f98e25e92943a7408
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,6 +68,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.DBconnection.executor": "Run",
@@ -80,10 +85,31 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel"
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DBconnection.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Login.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SignUp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.quizPage.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/mysql-connector-j-8.2.0.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+>>>>>>> ec3c166ac4b33a68e63a665f98e25e92943a7408
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources\org\quizproject\quizproject" />
+      <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources\org\quizproject\quizproject\" />
+      <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources" />
       <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\img" />
       <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources\org\quizproject\quizproject\Authentification" />
     </key>
@@ -117,8 +143,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DBconnection" />
         <item itemvalue="Application.Login" />
+        <item itemvalue="Application.DBconnection" />
       </list>
     </recent_temporary>
   </component>

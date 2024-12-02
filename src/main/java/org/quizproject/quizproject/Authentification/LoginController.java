@@ -48,21 +48,28 @@ public class LoginController {
             user.setPassword(password);
 
             if (authDao.Login(user)) {
-                // Load home screen
+<<<<<<< HEAD
                 try {
-                    FXMLLoader loader = new FXMLLoader(
-                            getClass().getResource("/org/quizproject/quizproject/Main/home-view.fxml"));
+
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("quizPage-view.fxml"));
                     Parent root = loader.load();
-                    Scene scene = new Scene(root, 900, 700);
+
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.setTitle("Quiz Application - Home");
+                    stage.setScene(new Scene(root, 900, 700));
+                    stage.setTitle("Registration Page");
                     stage.show();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    showAlert(AlertType.ERROR, "Navigation Error",
-                            "Could not load home screen: " + e.getMessage());
                 }
+
+
+=======
+                Alert successAlert = new Alert(AlertType.INFORMATION);
+                successAlert.setTitle("Login Successful");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Welcome back! You have logged in successfully.");
+                successAlert.showAndWait();
+>>>>>>> 11d8f6941907f026a11d87aeec693926889f8bc5
             } else {
                 Alert failureAlert = new Alert(AlertType.ERROR);
                 failureAlert.setTitle("Login Failed");
@@ -86,8 +93,15 @@ public class LoginController {
 
     public void redirectSignUpButtonAction(ActionEvent event) {
         try {
+<<<<<<< HEAD
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("signUp-view.fxml"));
             Parent root = loader.load();
+
+=======
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("signUp-view.fxml"));
+            Parent root = loader.load();
+>>>>>>> 11d8f6941907f026a11d87aeec693926889f8bc5
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root, 900, 700));
             stage.setTitle("Registration Page");
