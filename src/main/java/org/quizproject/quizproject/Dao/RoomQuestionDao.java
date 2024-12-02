@@ -11,8 +11,8 @@ public class RoomQuestionDao {
         // Implementation
     }
 
-    public List<RoomQuestion> getRoomQuestions(long roomId) {
-        String query = "SELECT * FROM room_questions WHERE room_id = ? ORDER BY `order`";
-        // Implementation
-    }
+    // public List<RoomQuestion> getRoomQuestions(long roomId) {
+    //     String query = "SELECT * FROM room_questions WHERE room_id = ? ORDER BY `order`";
+    //     // Implementation
+    // }
 }

@@ -48,11 +48,21 @@ public class LoginController {
             user.setPassword(password);
 
             if (authDao.Login(user)) {
-                Alert successAlert = new Alert(AlertType.INFORMATION);
-                successAlert.setTitle("Login Successful");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("Welcome back! You have logged in successfully.");
-                successAlert.showAndWait();
+                // Load home screen
+                try {
+                    FXMLLoader loader = new FXMLLoader(
+                            getClass().getResource("/org/quizproject/quizproject/Main/home-view.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root, 900, 700);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.setTitle("Quiz Application - Home");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    showAlert(AlertType.ERROR, "Navigation Error",
+                            "Could not load home screen: " + e.getMessage());
+                }
             } else {
                 Alert failureAlert = new Alert(AlertType.ERROR);
                 failureAlert.setTitle("Login Failed");

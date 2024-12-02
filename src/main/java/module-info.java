@@ -11,6 +11,8 @@ module org.quizproject.quizproject {
     requires mysql.connector.java;
 
     opens org.quizproject.quizproject.Authentification to javafx.fxml;
+    opens org.quizproject.quizproject.Main to javafx.fxml;
 
     exports org.quizproject.quizproject.Authentification;
+    exports org.quizproject.quizproject.Main;
 }
