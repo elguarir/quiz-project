@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.quizproject.quizproject.Controller.QuizPageController">
+    <top>
+        <AnchorPane prefHeight="86.0" prefWidth="900.0" style="-fx-background-color: #d5d2ff;">
+            <children>
+                <Label layoutX="679.0" layoutY="24.0" prefHeight="38.0" prefWidth="119.0" text=" Mohamed wadi">
+                    <font>
+                        <Font name="Californian FB Bold" size="17.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </top>
+   <left>
+        <AnchorPane prefHeight="470.0" prefWidth="752.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="164.0" layoutY="89.0" prefHeight="67.0" prefWidth="397.0" style="-fx-font-size: 32; -fx-font-weight: bold; -fx-text-fill: #000000;" text="#1 Mohamed EL HADATI " />
+                <Label layoutX="96.0" layoutY="236.0" style="-fx-font-size: 18;" text="#2 MAHMOUD 7/10" textFill="#37ced3" />
+                <Label layoutX="96.0" layoutY="294.0" prefHeight="27.0" prefWidth="166.0" style="-fx-font-size: 18;" text="#3 EL MAHDI 5/10" textFill="#22cd1c" />
+                <Label layoutX="96.0" layoutY="348.0" style="-fx-font-size: 18;" text="#4 ABDELGHANI 0/10" textFill="#ff0202" />
+            <Label layoutX="547.0" layoutY="89.0" prefHeight="67.0" prefWidth="125.0" style="-fx-font-size: 32;" text="WON!!" textFill="#7d7bff">
+               <font>
+                  <Font name="Calisto MT" size="12.0" />
+               </font>
+            </Label>
+            <Line endX="100.0" layoutX="310.0" layoutY="143.0" startX="-100.0" stroke="#1212ff" />
+            <Line endX="100.0" layoutX="484.0" layoutY="156.0" startX="-100.0" />
+            <Line endX="100.0" layoutX="561.0" layoutY="89.0" startX="-100.0" stroke="#00ff26" />
+            <Line endX="46.0" layoutX="403.0" layoutY="100.0" startX="-100.0" stroke="#ff35cd" />
+            <AnchorPane layoutX="67.0" layoutY="450.0" prefHeight="41.0" prefWidth="619.0" />
+            </children>
+        </AnchorPane>
+   </left>
+   <bottom>
+      <AnchorPane prefHeight="86.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="368.0" layoutY="35.0" prefHeight="17.0" prefWidth="251.0" text="CopyRight (©). all rights reserved" />
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>

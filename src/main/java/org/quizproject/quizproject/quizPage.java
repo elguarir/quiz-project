@@ -1,4 +1,4 @@
-package org.quizproject.quizproject.Authentification;
+package org.quizproject.quizproject;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,12 +7,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SignUp extends Application {
+public class quizPage extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("signUp-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("quizPage-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 700);
-        stage.setTitle("registration page");
+        stage.setTitle("quizPage");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

@@ -1,13 +1,23 @@
 package org.quizproject.quizproject.Models;
 
+import javafx.scene.paint.Color;
+
 public class Category {
     private long id;
     private String name;
     private String description;
     private String createdAt;
-
+    private Color backgroundColor;
+    
+    
     public long getId() {
         return this.id;
+    }
+
+    public Category(long id, String name, Color backgroundColor) {
+        this.id = id;
+        this.name = name;
+        this.backgroundColor = backgroundColor;
     }
 
     public void setId(long id) {
@@ -37,4 +47,6 @@ public class Category {
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
+
+     public Color getBackgroundColor() { return backgroundColor; }
 }

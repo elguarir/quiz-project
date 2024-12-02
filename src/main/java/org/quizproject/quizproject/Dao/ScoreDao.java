@@ -8,8 +8,8 @@ public class ScoreDao {
         // Implementation
     }
     
-    public List<Score> getRoomLeaderboard(long roomId) {
-        String query = "SELECT * FROM scores WHERE room_id = ? ORDER BY score DESC, time_spent ASC";
-        // Implementation
-    }
+    // public List<Score> getRoomLeaderboard(long roomId) {
+    //     String query = "SELECT * FROM scores WHERE room_id = ? ORDER BY score DESC, time_spent ASC";
+    //     // Implementation
+    // }
 }

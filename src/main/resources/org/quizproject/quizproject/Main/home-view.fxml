@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="org.quizproject.quizproject.Main.HomeController"
+      style="-fx-background-color: #f0f0f0;" prefWidth="900" prefHeight="700">
+    
+    <HBox style="-fx-padding: 10; -fx-background-color: white; -fx-spacing: 10; -fx-alignment: center-left; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+        <ImageView fx:id="userAvatar" fitHeight="40" fitWidth="40" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" />
+        <Label fx:id="userNameLabel" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="Create Room" onAction="#onCreateRoomClicked" 
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 5;" />
+    </HBox>
+    
+    <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" 
+                style="-fx-background: #f0f0f0; -fx-background-color: transparent;">
+        <GridPane fx:id="categoryGrid" alignment="CENTER" hgap="30" vgap="30" 
+                  style="-fx-padding: 30;">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="33.33" />
+                <ColumnConstraints percentWidth="33.33" />
+                <ColumnConstraints percentWidth="33.33" />
+            </columnConstraints>
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+        </GridPane>
+    </ScrollPane>
+</VBox>

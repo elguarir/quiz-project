@@ -4,23 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="5815fcd8-3ac1-466b-bef5-0403c14b46e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/AuthDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/AuthDaoInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/DBconnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Model/Genre.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Model/Match.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Model/MatchUsers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Model/Option.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Model/Question.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Model/Utilisateur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Authentification/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Authentification/login-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Authentification/signUp-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Authentification/signUp-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/CategoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/CategoryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/QuestionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/QuestionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/RoomDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/RoomDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/RoomParticipantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/RoomParticipantDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/RoomQuestionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/RoomQuestionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/ScoreDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/ScoreDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Models/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Models/Category.java" afterDir="false" />
     </list>
+=======
+    <list default="true" id="5815fcd8-3ac1-466b-bef5-0403c14b46e4" name="Changes" comment="" />
+>>>>>>> ec3c166ac4b33a68e63a665f98e25e92943a7408
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,15 +28,27 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;elguarir&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/elguarir/quiz-project.git&quot;,
+    &quot;accountId&quot;: &quot;c59992dc-c994-448b-a0d4-c81bafe2446d&quot;
+  }
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -57,6 +68,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.DBconnection.executor": "Run",
@@ -71,16 +83,38 @@
     "last_opened_file_path": "C:/mysql-connector-j-8.2.0.jar",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DBconnection.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Login.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SignUp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.quizPage.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/mysql-connector-j-8.2.0.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+>>>>>>> ec3c166ac4b33a68e63a665f98e25e92943a7408
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources\org\quizproject\quizproject" />
+      <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources\org\quizproject\quizproject\" />
+      <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources" />
       <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\img" />
       <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources\org\quizproject\quizproject\Authentification" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.DBconnection">
     <configuration name="DBconnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.quizproject.quizproject.Dao.DBconnection" />
       <module name="quiz-project" />
@@ -109,8 +143,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DBconnection" />
         <item itemvalue="Application.Login" />
+        <item itemvalue="Application.DBconnection" />
       </list>
     </recent_temporary>
   </component>
