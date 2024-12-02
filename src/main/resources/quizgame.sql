@@ -1,219 +1,119 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Nov 24, 2024 at 05:07 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- CreateTable
+CREATE TABLE `users` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NULL,
+    `avatar` VARCHAR(191) NULL,
+    `email` VARCHAR(191) NOT NULL,
+    `password` VARCHAR(191) NOT NULL,
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+    UNIQUE INDEX `users_email_key`(`email`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+-- CreateTable
+CREATE TABLE `categories` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+    `description` TEXT NULL,
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+    UNIQUE INDEX `categories_name_key`(`name`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
---
--- Database: `quizgame`
---
+-- CreateTable
+CREATE TABLE `questions` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `category_id` INTEGER NOT NULL,
+    `difficulty` VARCHAR(191) NOT NULL,
+    `content` TEXT NOT NULL,
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
--- --------------------------------------------------------
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
---
--- Table structure for table `genre`
---
+-- CreateTable
+CREATE TABLE `options` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `content` VARCHAR(191) NOT NULL,
+    `is_correct` BOOLEAN NOT NULL DEFAULT false,
+    `question_id` INTEGER NOT NULL,
 
-CREATE TABLE `genre` (
-  `id` int(11) NOT NULL,
-  `time` time NOT NULL,
-  `genre_value` varchar(255) NOT NULL,
-  `theme` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
+-- CreateTable
+CREATE TABLE `rooms` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `code` VARCHAR(191) NULL,
+    `is_private` BOOLEAN NOT NULL DEFAULT false,
+    `host_ip` VARCHAR(191) NOT NULL,
+    `status` VARCHAR(191) NOT NULL DEFAULT 'WAITING',
+    `host_id` INTEGER NOT NULL,
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
---
--- Table structure for table `match_users`
---
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `match_users` (
-  `id_match` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- CreateTable
+CREATE TABLE `room_participants` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `room_id` INTEGER NOT NULL,
+    `user_id` INTEGER NOT NULL,
+    `ip_address` VARCHAR(191) NOT NULL,
+    `joined_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
--- --------------------------------------------------------
+    UNIQUE INDEX `room_participants_room_id_user_id_key`(`room_id`, `user_id`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
---
--- Table structure for table `opt`
---
+-- CreateTable
+CREATE TABLE `room_questions` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `room_id` INTEGER NOT NULL,
+    `question_id` INTEGER NOT NULL,
+    `order` INTEGER NOT NULL,
 
-CREATE TABLE `opt` (
-  `id` int(11) NOT NULL,
-  `istime` tinyint(1) NOT NULL,
-  `text` text NOT NULL,
-  `id_question` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    UNIQUE INDEX `room_questions_room_id_question_id_key`(`room_id`, `question_id`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
+-- CreateTable
+CREATE TABLE `scores` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `room_id` INTEGER NOT NULL,
+    `user_id` INTEGER NOT NULL,
+    `score` INTEGER NOT NULL,
+    `time_spent` INTEGER NOT NULL,
+    `completed_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
---
--- Table structure for table `question`
---
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `question` (
-  `id` int(11) NOT NULL,
-  `id_genre` int(11) NOT NULL,
-  `text` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- AddForeignKey
+ALTER TABLE `questions` ADD CONSTRAINT `questions_category_id_fkey` FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
--- --------------------------------------------------------
+-- AddForeignKey
+ALTER TABLE `options` ADD CONSTRAINT `options_question_id_fkey` FOREIGN KEY (`question_id`) REFERENCES `questions`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Table structure for table `room`
---
+-- AddForeignKey
+ALTER TABLE `rooms` ADD CONSTRAINT `rooms_host_id_fkey` FOREIGN KEY (`host_id`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
-CREATE TABLE `room` (
-  `id` int(11) NOT NULL,
-  `isPrivate` tinyint(1) NOT NULL,
-  `key` varchar(255) NOT NULL,
-  `date` date NOT NULL,
-  `id_genre` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- AddForeignKey
+ALTER TABLE `room_participants` ADD CONSTRAINT `room_participants_room_id_fkey` FOREIGN KEY (`room_id`) REFERENCES `rooms`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
--- --------------------------------------------------------
+-- AddForeignKey
+ALTER TABLE `room_participants` ADD CONSTRAINT `room_participants_user_id_fkey` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Table structure for table `utilisateur`
---
+-- AddForeignKey
+ALTER TABLE `room_questions` ADD CONSTRAINT `room_questions_room_id_fkey` FOREIGN KEY (`room_id`) REFERENCES `rooms`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-CREATE TABLE `utilisateur` (
-  `id` int(11) NOT NULL,
-  `fullname` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- AddForeignKey
+ALTER TABLE `room_questions` ADD CONSTRAINT `room_questions_question_id_fkey` FOREIGN KEY (`question_id`) REFERENCES `questions`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
---
--- Dumping data for table `utilisateur`
---
+-- AddForeignKey
+ALTER TABLE `scores` ADD CONSTRAINT `scores_room_id_fkey` FOREIGN KEY (`room_id`) REFERENCES `rooms`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-INSERT INTO `utilisateur` (`id`, `fullname`, `email`, `password`) VALUES
-(1, 'mohamed', 'mohamed', 'mohamed'),
-(2, 'mohamed', 'mohamed@gmail.com', '1580');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `genre`
---
-ALTER TABLE `genre`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `match_users`
---
-ALTER TABLE `match_users`
-  ADD PRIMARY KEY (`id_match`,`id_user`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Indexes for table `opt`
---
-ALTER TABLE `opt`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_question` (`id_question`);
-
---
--- Indexes for table `question`
---
-ALTER TABLE `question`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_genre` (`id_genre`);
-
---
--- Indexes for table `room`
---
-ALTER TABLE `room`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_genre` (`id_genre`);
-
---
--- Indexes for table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `genre`
---
-ALTER TABLE `genre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `opt`
---
-ALTER TABLE `opt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `question`
---
-ALTER TABLE `question`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `room`
---
-ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `match_users`
---
-ALTER TABLE `match_users`
-  ADD CONSTRAINT `match_users_ibfk_1` FOREIGN KEY (`id_match`) REFERENCES `room` (`id`),
-  ADD CONSTRAINT `match_users_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id`);
-
---
--- Constraints for table `opt`
---
-ALTER TABLE `opt`
-  ADD CONSTRAINT `opt_ibfk_1` FOREIGN KEY (`id_question`) REFERENCES `question` (`id`);
-
---
--- Constraints for table `question`
---
-ALTER TABLE `question`
-  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`id_genre`) REFERENCES `genre` (`id`);
-
---
--- Constraints for table `room`
---
-ALTER TABLE `room`
-  ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`id_genre`) REFERENCES `genre` (`id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- AddForeignKey
+ALTER TABLE `scores` ADD CONSTRAINT `scores_user_id_fkey` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

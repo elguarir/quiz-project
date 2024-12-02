@@ -1,8 +1,7 @@
 package org.quizproject.quizproject.Dao;
-
-import org.quizproject.quizproject.Model.Utilisateur;
+import org.quizproject.quizproject.Models.User;
 
 public interface AuthDaoInterface {
-    void signUp(Utilisateur user);
-    boolean Login(Utilisateur user);
+    void signUp(User user);
+    boolean Login(User user);
 }

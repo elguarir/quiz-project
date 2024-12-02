@@ -12,15 +12,15 @@ import javafx.scene.control.PasswordField;
 
 import javafx.stage.Stage;
 import org.quizproject.quizproject.Dao.AuthDao;
-import org.quizproject.quizproject.Model.Utilisateur;
+import org.quizproject.quizproject.Models.User;
 
 import java.io.IOException;
 
 public class SignUpController {
 
     @FXML
-    private TextField fullnameField;
-
+    private TextField nameField; 
+    
     @FXML
     private TextField usernameField;
 
@@ -35,13 +35,13 @@ public class SignUpController {
     @FXML
     public void handleSignUp(ActionEvent event) {
         // Retrieve form data
-        String fullname = fullnameField.getText();
+        String name = nameField.getText(); // Changed from fullname
         String email = usernameField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 
         // Validate input
-        if (fullname.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Form Error", "All fields are required!");
             return;
         }
@@ -51,9 +51,9 @@ public class SignUpController {
             return;
         }
 
-        // Create a new Utilisateur object
-        Utilisateur user = new Utilisateur();
-        user.setFullname(fullname);
+        // Create a new User object
+        User user = new User();
+        user.setName(name); // Changed from setFullname
         user.setEmail(email);
         user.setPassword(password);
 
@@ -92,6 +92,5 @@ public class SignUpController {
             e.printStackTrace();
         }
     }
-
 
 }

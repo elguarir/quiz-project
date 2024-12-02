@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5815fcd8-3ac1-466b-bef5-0403c14b46e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controller/QuizPageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controller/RoomOptionsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/quizPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/RoomOptions.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/WinnerPage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/quizPage-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Authentification/SignUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/AuthDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/AuthDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/DBconnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/DBconnection.java" afterDir="false" />
-    </list>
+    <list default="true" id="5815fcd8-3ac1-466b-bef5-0403c14b46e4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,24 +41,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.DBconnection.executor": "Run",
-    "Application.HelloApplication.executor": "Run",
-    "Application.Login.executor": "Run",
-    "Application.SignUp.executor": "Run",
-    "Application.quizPage.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/mysql-connector-j-8.2.0.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DBconnection.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Login.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SignUp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.quizPage.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/mysql-connector-j-8.2.0.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources\org\quizproject\quizproject" />
@@ -82,7 +68,7 @@
       <recent name="C:\Users\Worldshop\Desktop\quiz-project\src\main\resources\org\quizproject\quizproject\Authentification" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.DBconnection">
     <configuration name="DBconnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.quizproject.quizproject.Dao.DBconnection" />
       <module name="quiz-project" />
