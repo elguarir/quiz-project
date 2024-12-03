@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="700.0" prefWidth="900.0">
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <center>
+                  <BorderPane prefHeight="594.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+                     <center>
+                        <Pane prefHeight="591.0" prefWidth="900.0" style="-fx-background-color: #faf5f5;" BorderPane.alignment="CENTER">
+                           <children>
+                              <Pane layoutX="30.0" layoutY="22.0" prefHeight="68.0" prefWidth="202.0" style="-fx-background-radius: 10px; -fx-background-color: #fff; -fx-border-radius: 10px; -fx-border-color: #d9d9d9;">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="4.0" prefHeight="57.0" prefWidth="187.0" text="Question 11" textAlignment="CENTER" textFill="#767676">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="79.0" layoutY="132.0" prefHeight="116.0" prefWidth="514.0" style="-fx-background-radius: 10px; -fx-background-color: #fff; -fx-border-radius: 10px; -fx-border-color: #d9d9d9;">
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="19.0" layoutY="14.0" prefHeight="89.0" prefWidth="477.0" text="Chno Kniyet Mohamed ?" textAlignment="CENTER" textFill="#5b5b5b">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <GridPane hgap="20.0" layoutX="46.0" layoutY="296.0" prefHeight="214.0" prefWidth="580.0" style="-fx-border-color: #767676; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-background-color: #fff;" vgap="20.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #404040; -fx-background-radius: 10px; -fx-border-radius: 10px;">
+                                       <children>
+                                          <Label alignment="CENTER" layoutX="17.0" layoutY="13.0" prefHeight="61.0" prefWidth="236.0" text="EL HADATTI" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #404040; -fx-background-radius: 10px; -fx-border-radius: 10px;" GridPane.columnIndex="1">
+                                       <children>
+                                          <Label alignment="CENTER" layoutX="17.0" layoutY="13.0" prefHeight="61.0" prefWidth="237.0" text="EL HADATTI" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #404040; -fx-background-radius: 10px; -fx-border-radius: 10px;" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label alignment="CENTER" layoutX="17.0" layoutY="13.0" prefHeight="60.0" prefWidth="242.0" text="EL HADATTI" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #404040; -fx-background-radius: 10px; -fx-border-radius: 10px;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label alignment="CENTER" layoutX="17.0" layoutY="13.0" prefHeight="63.0" prefWidth="241.0" text="EL HADATTI" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </GridPane>
+                              <Pane layoutX="424.0" layoutY="22.0" prefHeight="68.0" prefWidth="202.0" style="-fx-background-radius: 10px; -fx-background-color: #fff; -fx-border-radius: 10px; -fx-border-color: #d9d9d9;">
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="10.0" layoutY="8.0" prefHeight="53.0" prefWidth="182.0" text="7:24 min left" textAlignment="CENTER" textFill="#767676">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
+                     </center>
+                  </BorderPane>
+               </center>
+               <right>
+                  <Pane prefHeight="592.0" prefWidth="252.0" style="-fx-border-color: #faf5f5;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="14.0" layoutY="30.0" text="Progress (Current Question)">
+                           <font>
+                              <Font name="System Italic" size="16.0" />
+                           </font>
+                        </Label>
+                        <VBox layoutX="7.0" layoutY="68.0" prefHeight="205.0" prefWidth="236.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="215.0" spacing="10.0" style="-fx-border-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Assets/avatar.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label prefHeight="18.0" prefWidth="114.0" text="M. ELHADATTI" textFill="#696767">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="5/10" textFill="#696767">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="215.0" spacing="10.0" style="-fx-border-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Assets/avatar.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label prefHeight="18.0" prefWidth="114.0" text="M. ELHADATTI" textFill="#696767">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="2/10" textFill="#696767">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="215.0" spacing="10.0" style="-fx-border-color: #d9d9d9; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Assets/avatar.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label prefHeight="18.0" prefWidth="114.0" text="M. ELHADATTI" textFill="#696767">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="1/10" textFill="#696767">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </Pane>
+               </right>
+            </BorderPane>
+         </center>
+         <top>
+            <BorderPane prefHeight="50.0" prefWidth="903.0" BorderPane.alignment="CENTER">
+               <center>
+                  <Pane prefHeight="1.0" prefWidth="691.0" style="-fx-background-color: #fafafa; -fx-border-color: #d9d9d9;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="50.0" layoutY="11.0" text="Quizzy">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="752.0" layoutY="16.0" text="M. ELHADATTI" textFill="#696767">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="846.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/avatar.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </center>
+            </BorderPane>
+         </top>
+         <bottom>
+            <Pane prefHeight="57.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+               <children>
+                <Button cancelButton="true" layoutX="30.0" layoutY="11.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #faaaaa; -fx-border-color: #000; -fx-border-radius: 10px; -fx-background-radius: 10px;" text="Finish" textAlignment="CENTER" />
+                  <Button defaultButton="true" layoutX="542.0" layoutY="12.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="106.0" style="-fx-background-color: #97d6f7; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-color: #000;" text="Next" />
+               </children>
+            </Pane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
