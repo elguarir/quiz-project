@@ -2,20 +2,16 @@ package org.quizproject.quizproject.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import javafx.stage.Stage;
+
+import org.quizproject.quizproject.MainApplication;
 import org.quizproject.quizproject.Dao.AuthDao;
 import org.quizproject.quizproject.Dao.DBconnection;
 import org.quizproject.quizproject.Models.User;
 
-import java.io.IOException;
 
 public class LoginController {
 
@@ -48,17 +44,10 @@ public class LoginController {
             user.setPassword(password);
 
             if (authDao.Login(user)) {
-                Alert successAlert = new Alert(AlertType.INFORMATION);
-                successAlert.setTitle("Login Successful");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("Welcome back! You have logged in successfully.");
-                successAlert.showAndWait();
+                MainApplication.getInstance().setCurrentUser(user);
+                showAlert(AlertType.INFORMATION, "Login Successful", "Welcome back!");
             } else {
-                Alert failureAlert = new Alert(AlertType.ERROR);
-                failureAlert.setTitle("Login Failed");
-                failureAlert.setHeaderText(null);
-                failureAlert.setContentText("Invalid email or password. Please try again.");
-                failureAlert.showAndWait();
+                showAlert(AlertType.ERROR, "Login Failed", "Invalid credentials");
             }
         } catch (RuntimeException e) {
             showAlert(AlertType.ERROR, "System Error",
@@ -75,15 +64,6 @@ public class LoginController {
     }
 
     public void redirectSignUpButtonAction(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("signUp-view.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 700));
-            stage.setTitle("Registration Page");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MainApplication.getInstance().showSignUpScreen();
     }
 }
