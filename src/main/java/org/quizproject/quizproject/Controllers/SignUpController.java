@@ -1,4 +1,4 @@
-package org.quizproject.quizproject.Authentification;
+package org.quizproject.quizproject.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
