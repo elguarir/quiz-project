@@ -1,4 +1,4 @@
-package org.quizproject.quizproject.Controller;
+package org.quizproject.quizproject.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
