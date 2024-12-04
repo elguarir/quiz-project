@@ -49,7 +49,7 @@
                     </font>
                 </Button>
                 <Button layoutX="432.0" layoutY="481.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #2519cd;" text="Registre" textFill="WHITE" />
-            <TextField fx:id="usernameField" layoutX="261.0" layoutY="286.0" prefHeight="35.0" prefWidth="240.0" promptText="Enter your email" />
+            <TextField fx:id="emailField" layoutX="261.0" layoutY="286.0" prefHeight="35.0" prefWidth="240.0" promptText="Enter your email" />
             <TextField fx:id="nameField" layoutX="261.0" layoutY="224.0" prefHeight="35.0" prefWidth="240.0" promptText="Enter your name" />
             <Label layoutX="59.0" layoutY="288.0" prefHeight="32.0" prefWidth="113.0" text="Email" textFill="#0d00ff">
                <font>
