@@ -13,6 +13,7 @@ public class MainApplication extends Application {
     private static final int WINDOW_WIDTH = 900;
     private static final int WINDOW_HEIGHT = 700;
 
+
     @Override
     public void start(Stage stage) {
         instance = this;
@@ -27,6 +28,9 @@ public class MainApplication extends Application {
 
     public void showLoginScreen() {
         loadScreen("Authentification/login-view.fxml", "Quizzy - Login");
+    }
+    public void showPlayAlone(){
+        loadScreen("Main/room-questions.fxml", "Quizzy - Quiz Alone");
     }
 
     public void showSignUpScreen() {

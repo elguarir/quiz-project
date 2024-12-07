@@ -87,6 +87,9 @@ public class HomeController {
         return box;
     }
 
+
+//    }
+
     private void handleCategoryClick(Category category) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/quizproject/quizproject/Main/create-quiz.fxml"));
@@ -110,4 +113,5 @@ public class HomeController {
             e.printStackTrace();
         }
     }
+
 }

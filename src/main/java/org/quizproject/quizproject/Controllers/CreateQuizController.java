@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.quizproject.quizproject.Models.Category;
 import org.quizproject.quizproject.MainApplication;
+import org.quizproject.quizproject.Models.User;
 
 public class CreateQuizController {
     @FXML
@@ -78,10 +79,14 @@ public class CreateQuizController {
     }
 
     private void handleSinglePlayer() {
-        // TODO: Implement single player logic
 
+        MainApplication.getInstance().showPlayAlone();
         dialogStage.close();
     }
+
+
+
+
 
     private void handleMultiPlayer() {
         buttonsWrapper.setVisible(false);

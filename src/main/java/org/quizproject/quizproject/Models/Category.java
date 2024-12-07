@@ -13,8 +13,8 @@ public class Category {
     private Color backgroundColor;
     
     
-    public long getId() {
-        return this.id;
+    public int getId() {
+        return (int) this.id;
     }
 
     public Category(long id, String name, Color backgroundColor) {
