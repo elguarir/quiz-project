@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.quizproject.quizproject.Controllers.CreateQuizController">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0">
+         <center>
+            <VBox fx:id="buttonsWrapper" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+               <children>
+                  <Button fx:id="singlePlayerButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="63.0" prefWidth="383.0" style="-fx-background-color: #333; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-color: #000;" text="Single Player" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="multiPlayerButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="63.0" prefWidth="383.0" style="-fx-background-color: #97d6f7; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-color: #000;" text="Multi Player" textAlignment="CENTER">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

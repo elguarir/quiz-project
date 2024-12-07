@@ -12,10 +12,14 @@ public class CategoryDao {
     public List<Category> getAllCategories() {
         String query = "SELECT * FROM categories";
         List<Category> categories = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
         
-        try (Connection conn = dbConnection.getCon();
-             PreparedStatement stmt = conn.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery()) {
+        try {
+            conn = dbConnection.getCon();
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
             
             while (rs.next()) {
                 Category category = new Category(
@@ -23,12 +27,23 @@ public class CategoryDao {
                     rs.getString("name"),
                     rs.getString("description")
                 );
-                // Fetch and set questions with their options
-                category.setQuestions(questionDao.getQuestionsByCategory(category.getId()));
                 categories.add(category);
+            }
+
+            // Load questions after the ResultSet is closed
+            for (Category category : categories) {
+                category.setQuestions(questionDao.getQuestionsByCategory(category.getId()));
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return categories;
     }

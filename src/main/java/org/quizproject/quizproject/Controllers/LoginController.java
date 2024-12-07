@@ -12,7 +12,6 @@ import org.quizproject.quizproject.Dao.AuthDao;
 import org.quizproject.quizproject.Dao.DBconnection;
 import org.quizproject.quizproject.Models.User;
 
-
 public class LoginController {
 
     public TextField emailField;
@@ -46,6 +45,7 @@ public class LoginController {
             if (authDao.Login(user)) {
                 MainApplication.getInstance().setCurrentUser(user);
                 showAlert(AlertType.INFORMATION, "Login Successful", "Welcome back!");
+                MainApplication.getInstance().showHomeScreen();
             } else {
                 showAlert(AlertType.ERROR, "Login Failed", "Invalid credentials");
             }

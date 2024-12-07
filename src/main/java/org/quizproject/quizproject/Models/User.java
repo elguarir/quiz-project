@@ -16,7 +16,7 @@ public class User {
 
     private void generateAvatar() {
         if (this.name != null) {
-            this.avatar = "https://api.dicebear.com/9.x/notionists/svg?backgroundColor=b6e3f4,c0aede,d1d4f9&seed="
+            this.avatar = "https://api.dicebear.com/9.x/notionists/png?backgroundColor=b6e3f4,c0aede,d1d4f9&seed="
                     + this.name;
         }
     }

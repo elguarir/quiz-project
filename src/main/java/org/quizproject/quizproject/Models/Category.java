@@ -9,7 +9,7 @@ public class Category {
     private String name;
     private String description;
     private String createdAt;
-    private List<Question> questions; // Changed from List<Option>
+    private List<Question> questions; 
     private Color backgroundColor;
     
     

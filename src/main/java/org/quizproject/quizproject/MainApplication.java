@@ -17,6 +17,7 @@ public class MainApplication extends Application {
     public void start(Stage stage) {
         instance = this;
         this.primaryStage = stage;
+        this.primaryStage.setResizable(false);
         showLoginScreen();
     }
 
@@ -30,6 +31,9 @@ public class MainApplication extends Application {
 
     public void showSignUpScreen() {
         loadScreen("Authentification/signUp-view.fxml", "Quizzy - Sign Up");
+    }
+    public void showHomeScreen() {
+        loadScreen("Main/home-view.fxml", "Quizzy - Home");
     }
 
     private void loadScreen(String fxmlPath, String title) {
