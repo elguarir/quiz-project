@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5815fcd8-3ac1-466b-bef5-0403c14b46e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/PlayAloneController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/quizRoom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/CreateQuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/CreateQuizController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/PlayAloneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/PlayAloneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Models/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Models/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Tests/quizRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Tests/quizRoom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Main/create-quiz.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Main/create-quiz.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Main/room-questions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Main/room-questions.fxml" afterDir="false" />
     </list>
@@ -77,7 +82,8 @@
     "last_opened_file_path": "C:/mysql-connector-j-8.2.0.jar",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
 }]]></component>
   <component name="RecentsManager">
