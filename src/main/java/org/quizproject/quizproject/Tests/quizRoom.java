@@ -1,4 +1,4 @@
-package org.quizproject.quizproject;
+package org.quizproject.quizproject.Tests;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

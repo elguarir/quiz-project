@@ -18,4 +18,6 @@ module org.quizproject.quizproject {
 
     opens org.quizproject.quizproject to javafx.fxml;
     exports org.quizproject.quizproject;
+    exports org.quizproject.quizproject.Tests;
+    opens org.quizproject.quizproject.Tests to javafx.fxml;
 }
