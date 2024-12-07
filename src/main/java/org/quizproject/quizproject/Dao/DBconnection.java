@@ -7,12 +7,20 @@ import java.sql.SQLException;
 public class DBconnection {
     private static DBconnection instance;
     private Connection connection;
+    //hosted db :
     // private static final String URL = "jdbc:mysql://51.83.68.93:3306/quizproject";
     // private static final String USER = "moha";
     // private static final String PASSWORD = "123";
-    private static final String URL = "jdbc:mysql://localhost:3306/quizproject";
+
+    //el garuir credentials :
+//    private static final String URL = "jdbc:mysql://localhost:3306/quizproject";
+//    private static final String USER = "root";
+//    private static final String PASSWORD = "moha";
+
+    //el aassal credentials :
+    private static final String URL = "jdbc:mysql://localhost:3306/quizgame";
     private static final String USER = "root";
-    private static final String PASSWORD = "moha";
+    private static final String PASSWORD = "";
 
     private DBconnection() {
         try {
@@ -47,6 +55,27 @@ public class DBconnection {
             } catch (SQLException e) {
                 System.err.println("Error closing connection: " + e.getMessage());
             }
+        }
+    }
+
+    //main method to test the db connectivity :
+    public static void main(String[] args) {
+        System.out.println("Testing database connectivity...");
+
+        // Get an instance of DBconnection
+        DBconnection dbConnection = DBconnection.getInstance();
+
+        try (Connection connection = dbConnection.getCon()) {
+            if (connection != null && !connection.isClosed()) {
+                System.out.println("Database connection established successfully!");
+            } else {
+                System.out.println("Failed to establish database connection.");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            dbConnection.closeConnection();
         }
     }
 }
