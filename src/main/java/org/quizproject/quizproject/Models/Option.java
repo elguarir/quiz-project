@@ -38,4 +38,14 @@ public class Option {
     public void setQuestionId(long questionId) {
         this.questionId = questionId;
     }
+
+    @Override
+    public String toString() {
+        return "Option{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", isCorrect=" + isCorrect +
+                ", questionId=" + questionId +
+                '}';
+    }
 }

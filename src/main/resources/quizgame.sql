@@ -51,7 +51,10 @@ CREATE TABLE `rooms` (
     `host_ip` VARCHAR(191) NOT NULL,
     `status` VARCHAR(191) NOT NULL DEFAULT 'WAITING',
     `host_id` INTEGER NOT NULL,
+    `max_players` INTEGER NOT NULL DEFAULT 4,
+    `quiz_time` INTEGER NOT NULL DEFAULT 30,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `last_heartbeat` DATETIME(3) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -62,6 +65,8 @@ CREATE TABLE `room_participants` (
     `room_id` INTEGER NOT NULL,
     `user_id` INTEGER NOT NULL,
     `ip_address` VARCHAR(191) NOT NULL,
+    `connection_status` VARCHAR(191) NOT NULL DEFAULT 'CONNECTED',
+    `last_ping` DATETIME(3) NULL,
     `joined_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     UNIQUE INDEX `room_participants_room_id_user_id_key`(`room_id`, `user_id`),

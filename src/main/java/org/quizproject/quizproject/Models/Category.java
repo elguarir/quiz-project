@@ -20,6 +20,13 @@ public class Category {
         this.backgroundColor = backgroundColor;
     }
 
+    public Category(long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.backgroundColor = Color.WHITE; // Default color
+    }
+
     public void setId(long id) {
         this.id = id;
     }

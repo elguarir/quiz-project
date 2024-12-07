@@ -1,8 +1,6 @@
 
 package org.quizproject.quizproject.Models;
 
-import java.util.List;
-
 public class RoomQuestion {
     private long id;
     private long roomId;

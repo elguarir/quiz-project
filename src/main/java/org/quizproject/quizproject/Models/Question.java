@@ -66,6 +66,18 @@ public class Question {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", categoryId=" + categoryId +
+                ", difficulty='" + difficulty + '\'' +
+                ", content='" + content + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", options=" + options +
+                '}';
+    }
+
 
     public boolean validateAnswer(long optionId) {
         return options.stream()

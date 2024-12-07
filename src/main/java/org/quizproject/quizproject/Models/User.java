@@ -1,5 +1,4 @@
 package org.quizproject.quizproject.Models;
-
 import java.time.LocalDateTime;
 
 public class User {

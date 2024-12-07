@@ -16,6 +16,9 @@ public class Room {
     private String createdAt;
     private List<RoomQuestion> questions;
     private List<RoomParticipant> participants;
+    private int maxPlayers;
+    private int quizTime;
+    private String lastHeartbeat;
 
     public long getId() {
         return this.id;
@@ -73,6 +76,30 @@ public class Room {
         this.createdAt = createdAt;
     }
 
+    public int getMaxPlayers() {
+        return maxPlayers;
+    }
+
+    public void setMaxPlayers(int maxPlayers) {
+        this.maxPlayers = maxPlayers;
+    }
+
+    public int getQuizTime() {
+        return quizTime;
+    }
+
+    public void setQuizTime(int quizTime) {
+        this.quizTime = quizTime;
+    }
+
+    public String getLastHeartbeat() {
+        return lastHeartbeat;
+    }
+
+    public void setLastHeartbeat(String lastHeartbeat) {
+        this.lastHeartbeat = lastHeartbeat;
+    }
+
     public String generateCode() {
         Random random = new Random();
         StringBuilder codeBuilder = new StringBuilder();
@@ -83,6 +110,12 @@ public class Room {
         }
 
         return codeBuilder.toString();
+    }
+
+    public boolean canStart() {
+        return participants != null &&
+                participants.size() >= 2 &&
+                participants.size() <= maxPlayers;
     }
 
 }
