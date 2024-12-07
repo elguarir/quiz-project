@@ -7,6 +7,7 @@ import java.util.List;
 
 public class CategoryDao {
     private final DBconnection dbConnection = DBconnection.getInstance();
+    private final QuestionDao questionDao = new QuestionDao();
 
     public List<Category> getAllCategories() {
         String query = "SELECT * FROM categories";
@@ -22,6 +23,8 @@ public class CategoryDao {
                     rs.getString("name"),
                     rs.getString("description")
                 );
+                // Fetch and set questions with their options
+                category.setQuestions(questionDao.getQuestionsByCategory(category.getId()));
                 categories.add(category);
             }
         } catch (SQLException e) {
@@ -39,40 +42,14 @@ public class CategoryDao {
             stmt.setLong(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return new Category(
+                    Category category = new Category(
                         rs.getLong("id"),
                         rs.getString("name"),
                         rs.getString("description")
                     );
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public Category createCategory(String name, String description) {
-        String query = "INSERT INTO categories (name, description) VALUES (?, ?)";
-        
-        try (Connection conn = dbConnection.getCon();
-             PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            
-            stmt.setString(1, name);
-            stmt.setString(2, description);
-            
-            int affectedRows = stmt.executeUpdate();
-            if (affectedRows == 0) {
-                throw new SQLException("Creating category failed, no rows affected.");
-            }
-
-            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    return new Category(
-                        generatedKeys.getLong(1),
-                        name,
-                        description
-                    );
+                    // Fetch and set questions with their options
+                    category.setQuestions(questionDao.getQuestionsByCategory(category.getId()));
+                    return category;
                 }
             }
         } catch (SQLException e) {

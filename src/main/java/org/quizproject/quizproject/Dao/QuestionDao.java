@@ -14,27 +14,28 @@ public class QuestionDao {
 
     public List<Question> getQuestionsByCategory(long categoryId) {
         List<Question> questions = new ArrayList<>();
-
         String query = "SELECT * FROM questions WHERE category_id = ?";
 
         try (Connection conn = dbConnection.getCon();
-                PreparedStatement stmt = conn.prepareStatement(query)) {
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setLong(1, categoryId);
-            ResultSet rs = stmt.executeQuery();
+            try (ResultSet rs = stmt.executeQuery()) {
+                // First, collect all questions
+                while (rs.next()) {
+                    Question question = new Question();
+                    question.setId(rs.getLong("id"));
+                    question.setCategoryId(rs.getLong("category_id"));
+                    question.setDifficulty(rs.getString("difficulty"));
+                    question.setContent(rs.getString("content"));
+                    question.setCreatedAt(rs.getString("created_at"));
+                    questions.add(question);
+                }
+            }
 
-            // Process the result set for each question
-            while (rs.next()) {
-                Question question = new Question();
-                question.setId(rs.getLong("id"));
-                question.setCategoryId(rs.getLong("category_id"));
-                question.setDifficulty(rs.getString("difficulty"));
-                question.setContent(rs.getString("content"));
-                question.setCreatedAt(rs.getString("created_at"));
-
-                // Fetch options for each question immediately
-                question.setOptions(getOptionsByQuestionId(rs.getLong("id")));
-                questions.add(question);
+            // Then, fetch options for each question after ResultSet is processed
+            for (Question question : questions) {
+                question.setOptions(getOptionsByQuestionId(question.getId()));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,7 +49,7 @@ public class QuestionDao {
         String query = "SELECT * FROM options WHERE question_id = ?";
 
         try (Connection conn = dbConnection.getCon();
-                PreparedStatement stmt = conn.prepareStatement(query)) {
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setLong(1, questionId);
             ResultSet rs = stmt.executeQuery();

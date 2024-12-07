@@ -1,5 +1,7 @@
 package org.quizproject.quizproject.Models;
 
+import java.util.List;
+
 import javafx.scene.paint.Color;
 
 public class Category {
@@ -7,6 +9,7 @@ public class Category {
     private String name;
     private String description;
     private String createdAt;
+    private List<Question> questions; // Changed from List<Option>
     private Color backgroundColor;
     
     
@@ -49,6 +52,14 @@ public class Category {
 
     public String getCreatedAt() {
         return this.createdAt;
+    }
+
+    public List<Question> getQuestions() {
+        return this.questions;
+    }
+
+    public void setQuestions(List<Question> questions) { // Changed parameter type
+        this.questions = questions;
     }
 
     public void setCreatedAt(String createdAt) {

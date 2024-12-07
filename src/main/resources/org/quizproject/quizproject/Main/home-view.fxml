@@ -75,7 +75,7 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="131.0" prefWidth="376.0" style="-fx-background-color: #333; -fx-border-radius: 8px; -fx-background-radius: 8px;">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Technology" textAlignment="CENTER" textFill="WHITE">
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="116.0" prefWidth="373.0" text="Technology" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="29.0" />
                                              </font>
@@ -84,43 +84,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="131.0" prefWidth="376.0" style="-fx-background-color: #333; -fx-border-radius: 8px; -fx-background-radius: 8px;" GridPane.columnIndex="1">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Technology" textAlignment="CENTER" textFill="WHITE">
-                                             <font>
-                                                <Font name="System Bold" size="29.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="131.0" prefWidth="376.0" style="-fx-background-color: #333; -fx-border-radius: 8px; -fx-background-radius: 8px;" GridPane.rowIndex="1">
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Technology" textAlignment="CENTER" textFill="WHITE">
-                                             <font>
-                                                <Font name="System Bold" size="29.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="131.0" prefWidth="376.0" style="-fx-background-color: #333; -fx-border-radius: 8px; -fx-background-radius: 8px;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Technology" textAlignment="CENTER" textFill="WHITE">
-                                             <font>
-                                                <Font name="System Bold" size="29.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="131.0" prefWidth="376.0" style="-fx-background-color: #333; -fx-border-radius: 8px; -fx-background-radius: 8px;" GridPane.rowIndex="2">
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Technology" textAlignment="CENTER" textFill="WHITE">
-                                             <font>
-                                                <Font name="System Bold" size="29.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="131.0" prefWidth="376.0" style="-fx-background-color: #333; -fx-border-radius: 8px; -fx-background-radius: 8px;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Technology" textAlignment="CENTER" textFill="WHITE">
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="116.0" prefWidth="373.0" text="Technology" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="29.0" />
                                              </font>

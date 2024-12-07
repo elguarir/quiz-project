@@ -6,7 +6,8 @@ public class TestQueries {
 
     public static void main(String[] args) {
         QuestionDao dao = new QuestionDao();
-        var questions = dao.getOptionsByQuestionId(1);
-        questions.stream().forEach(System.out::println);
+        var questions = dao.getQuestionsByCategory(1);
+        System.out.println(questions.size());
+
     }
 }
