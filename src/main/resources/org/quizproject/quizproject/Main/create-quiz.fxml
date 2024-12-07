@@ -2,16 +2,26 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.quizproject.quizproject.Controllers.CreateQuizController">
+<AnchorPane prefHeight="307.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.quizproject.quizproject.Controllers.CreateQuizController">
    <children>
-      <BorderPane prefHeight="400.0" prefWidth="600.0">
+      <BorderPane fx:id="buttonsWrapper" prefHeight="307.0" prefWidth="610.0" visible="false">
          <center>
-            <VBox fx:id="buttonsWrapper" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
                <padding>
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                </padding>
@@ -32,6 +42,113 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+      <BorderPane fx:id="optionsWrapper" prefHeight="307.0" prefWidth="610.0">
+         <center>
+            <VBox fx:id="buttonsWrapper1" prefHeight="300.0" prefWidth="610.0" spacing="30.0" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets left="25.0" right="10.0" top="20.0" />
+               </padding>
+               <children>
+                  <VBox prefHeight="55.0" prefWidth="550.0">
+                     <children>
+                        <Label text="Room Options">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="18.0" prefWidth="415.0" text="Configure room options as you want, playing with others is always more fun!" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="196.0" prefWidth="550.0" spacing="5.0">
+                     <children>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="550.0" spacing="15.0">
+                                 <children>
+                                    <Label text="Room Type">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="roomType" prefHeight="26.0" prefWidth="153.0" promptText="Choose a type" />
+                                 </children>
+                                 <padding>
+                                    <Insets right="15.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox fx:id="roomCodeWrapper" alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="550.0" spacing="15.0" GridPane.columnIndex="1" visible="false">
+                                 <children>
+                                    <Label text="Code">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <PasswordField fx:id="roomCode" promptText="Numbers only!" />
+                                 </children>
+                                 <padding>
+                                    <Insets right="15.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                        <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="550.0" spacing="15.0">
+                           <children>
+                              <Label text="Number of Players">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <RadioButton mnemonicParsing="false" text="Dual">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="playerCount" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton mnemonicParsing="false" text="Tri-Battle" toggleGroup="$playerCount" />
+                              <RadioButton mnemonicParsing="false" text="Battle of Four" toggleGroup="$playerCount" />
+                           </children>
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="550.0" spacing="15.0">
+                           <children>
+                              <Label text="Quizz Time">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Slider fx:id="quizTimeSlider" blockIncrement="1.0" max="30.0" min="1.0" value="5.0" />
+                              <Label fx:id="timeLabel" text="5 minutes" textFill="#6b6b6b" />
+                           </children>
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="550.0" spacing="15.0">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                           <children>
+                              <Button fx:id="createButton" mnemonicParsing="false" prefHeight="18.0" prefWidth="116.0" style="-fx-background-color: #97d6f7; -fx-background-radius: 7px; -fx-border-radius: 7px; -fx-border-color: #333;" text="Create" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </center>

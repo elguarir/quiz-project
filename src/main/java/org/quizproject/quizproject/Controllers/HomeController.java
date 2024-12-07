@@ -89,8 +89,7 @@ public class HomeController {
 
     private void handleCategoryClick(Category category) {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApplication.class.getResource("Main/create-quiz.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/quizproject/quizproject/Main/create-quiz.fxml"));
             AnchorPane page = loader.load();
 
             Stage dialogStage = new Stage();
