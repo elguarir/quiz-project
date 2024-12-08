@@ -30,7 +30,7 @@ public class MainApplication extends Application {
         loadScreen("Authentification/login-view.fxml", "Quizzy - Login");
     }
     public void showPlayAlone(){
-        loadScreen("Main/room-questions.fxml", "Quizzy - Quiz Alone");
+        loadScreen("Main/room-questions-alone.fxml", "Quizzy - Quiz Alone");
     }
 
     public void showSignUpScreen() {

@@ -53,7 +53,7 @@ public class HomeController {
 
         for (Category category : categories) {
             HBox categoryBox = createCategoryBox(category);
-            
+
             // Set fixed size for the box
             categoryBox.setMinHeight(131.0);
             categoryBox.setMaxHeight(131.0);
@@ -61,8 +61,7 @@ public class HomeController {
             categoryBox.setMaxWidth(376.0);
 
             categoryGrid.add(categoryBox, column, row);
-            
-            // Add row constraints dynamically
+
             while (categoryGrid.getRowConstraints().size() <= row) {
                 RowConstraints rowConstraints = new RowConstraints();
                 rowConstraints.setMinHeight(131.0);

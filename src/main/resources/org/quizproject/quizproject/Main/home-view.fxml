@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.quizproject.quizproject.Controllers.HomeController">
@@ -29,7 +28,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="userNameLabel" layoutX="752.0" layoutY="16.0" text="M. ELHADATTI" textFill="#696767">
+                              <Label fx:id="userNameLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="752.0" layoutY="16.0" prefHeight="17.0" prefWidth="88.0" text="M. ELHADATTI" textFill="#696767">
                                  <font>
                                     <Font name="System Italic" size="12.0" />
                                  </font>
