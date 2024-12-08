@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
@@ -52,8 +53,22 @@ public class HomeController {
 
         for (Category category : categories) {
             HBox categoryBox = createCategoryBox(category);
+            
+            // Set fixed size for the box
+            categoryBox.setMinHeight(131.0);
+            categoryBox.setMaxHeight(131.0);
+            categoryBox.setMinWidth(376.0);
+            categoryBox.setMaxWidth(376.0);
 
             categoryGrid.add(categoryBox, column, row);
+            
+            // Add row constraints dynamically
+            while (categoryGrid.getRowConstraints().size() <= row) {
+                RowConstraints rowConstraints = new RowConstraints();
+                rowConstraints.setMinHeight(131.0);
+                rowConstraints.setPrefHeight(131.0);
+                categoryGrid.getRowConstraints().add(rowConstraints);
+            }
 
             column++;
             if (column > 1) { // Move to next row after 2 columns
@@ -68,6 +83,8 @@ public class HomeController {
         box.setAlignment(javafx.geometry.Pos.CENTER);
         box.setPrefHeight(131.0);
         box.setPrefWidth(376.0);
+        box.setMinHeight(131.0);
+        box.setMaxHeight(131.0);
         box.setStyle("-fx-background-color: #333; -fx-border-radius: 8px; -fx-background-radius: 8px;");
 
         Label label = new Label(category.getName());
@@ -86,8 +103,6 @@ public class HomeController {
 
         return box;
     }
-
-    // }
 
     private void handleCategoryClick(Category category) {
         try {
