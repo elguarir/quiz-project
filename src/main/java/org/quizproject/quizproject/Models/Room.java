@@ -20,6 +20,37 @@ public class Room {
     private int quizTime;
     private String lastHeartbeat;
 
+    public Room() {
+    };
+
+    public Room(long id, String code, boolean isPrivate, String hostIp, String status, long hostId, String createdAt,
+            List<RoomQuestion> questions, List<RoomParticipant> participants, int maxPlayers, int quizTime,
+            String lastHeartbeat) {
+        this.id = id;
+        this.code = code;
+        this.isPrivate = isPrivate;
+        this.hostIp = hostIp;
+        this.status = status;
+        this.hostId = hostId;
+        this.createdAt = createdAt;
+        this.questions = questions;
+        this.participants = participants;
+        this.maxPlayers = maxPlayers;
+        this.quizTime = quizTime;
+        this.lastHeartbeat = lastHeartbeat;
+    }
+
+    public Room(String code, boolean isPrivate, String hostIp, long hostId, int maxPlayers, int quizTime) {
+        this.code = code;
+        this.isPrivate = isPrivate;
+        this.hostIp = hostIp;
+        this.status = "WAITING";
+        this.hostId = hostId;
+        this.maxPlayers = maxPlayers;
+        this.quizTime = quizTime;
+        this.createdAt = java.time.LocalDateTime.now().toString();
+    }
+
     public long getId() {
         return this.id;
     }

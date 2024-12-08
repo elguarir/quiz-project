@@ -6,7 +6,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.quizproject.quizproject.Models.Category;
+import org.quizproject.quizproject.Models.Room;
 import org.quizproject.quizproject.MainApplication;
+import org.quizproject.quizproject.Dao.RoomDao;
 import org.quizproject.quizproject.Models.User;
 
 public class CreateQuizController {
@@ -32,10 +34,7 @@ public class CreateQuizController {
     private Button createButton;
     @FXML
     private ToggleGroup playerCount;
-    @FXML
-    private TextField quizTitleField;
-    @FXML
-    private TextArea quizDescriptionField;
+
     private static Category selectedCategory;
 
     private Stage dialogStage;
@@ -99,15 +98,59 @@ public class CreateQuizController {
         roomCode.setDisable(!isPrivate);
     }
 
-    private void handleCreateRoom() {
-        // Validate inputs
+    private void validateRoomCreation() throws IllegalArgumentException {
         if ("Private".equals(roomType.getValue()) &&
                 (roomCode.getText() == null || roomCode.getText().trim().isEmpty())) {
-            showError("Room code is required for private rooms");
-            return;
+            throw new IllegalArgumentException("Room code is required for private rooms");
+        }
+        if (!roomCode.getText().matches("[0-9]+") && "Private".equals(roomType.getValue())) {
+            throw new IllegalArgumentException("Room code must be a number");
+        }
+        if (playerCount.getSelectedToggle() == null) {
+            throw new IllegalArgumentException("Please select number of players");
+        }
+    }
+
+    private void handleCreateRoom() {
+        try {
+            validateRoomCreation();
+            User currentUser = MainApplication.getInstance().getCurrentUser();
+            String roomCodeValue = roomCode.getText();
+            boolean isPrivate = "Private".equals(roomType.getValue());
+            RadioButton selectedPlayerCount = (RadioButton) playerCount.getSelectedToggle();
+            String maxPlayers = selectedPlayerCount != null ? selectedPlayerCount.getText() : "Dual";
+            int maxPlayerInt = maxPlayers.equals("Dual") ? 2 : maxPlayers.equals("Tri-Battle") ? 3 : 4;
+            int quizTime = (int) quizTimeSlider.getValue();
+
+            System.out.println("Room Details:");
+            System.out.println("Host: " + currentUser.getName());
+            System.out.println("Room Type: " + (isPrivate ? "Private" : "Public"));
+            System.out.println("Room Code: " + (isPrivate ? roomCodeValue : "N/A"));
+            System.out.println("Max Players: " + maxPlayers);
+            System.out.println("Quiz Time: " + quizTime + " minutes");
+            System.out.println("Category: " + selectedCategory.getName());
+
+            Room room = new Room();
+            room.setHostId(currentUser.getId());
+            room.setHostIp(currentUser.getUserIp()); // Local host for testing
+            room.setCode(isPrivate ? roomCodeValue : null);
+            room.setPrivate(isPrivate);
+            room.setMaxPlayers(maxPlayerInt);
+            room.setQuizTime(quizTime);
+
+            RoomDao roomDao = new RoomDao();
+            Room createdRoom = roomDao.createRoom(room);
+
+            if (createdRoom == null) {
+                throw new IllegalArgumentException("Failed to create room");
+            }
+
+            // Continue with room creation logic
+
+        } catch (IllegalArgumentException e) {
+            showError(e.getMessage());
         }
 
-        // TODO: Create room in database and start game session
         dialogStage.close();
     }
 

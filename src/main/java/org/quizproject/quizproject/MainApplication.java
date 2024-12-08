@@ -4,6 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import org.quizproject.quizproject.Models.User;
 
 public class MainApplication extends Application {
@@ -12,7 +16,6 @@ public class MainApplication extends Application {
     private User currentUser;
     private static final int WINDOW_WIDTH = 900;
     private static final int WINDOW_HEIGHT = 700;
-
 
     @Override
     public void start(Stage stage) {
@@ -29,7 +32,8 @@ public class MainApplication extends Application {
     public void showLoginScreen() {
         loadScreen("Authentification/login-view.fxml", "Quizzy - Login");
     }
-    public void showPlayAlone(){
+
+    public void showPlayAlone() {
         loadScreen("Main/room-questions-alone.fxml", "Quizzy - Quiz Alone");
     }
 
@@ -53,7 +57,6 @@ public class MainApplication extends Application {
         }
     }
 
-    
     public void setCurrentUser(User user) {
         this.currentUser = user;
     }
@@ -61,6 +64,7 @@ public class MainApplication extends Application {
     public User getCurrentUser() {
         return currentUser;
     }
+
 
     public static void main(String[] args) {
         launch(args);

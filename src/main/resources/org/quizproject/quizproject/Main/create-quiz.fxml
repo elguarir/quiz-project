@@ -109,7 +109,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <RadioButton mnemonicParsing="false" text="Dual">
+                              <RadioButton mnemonicParsing="false" selected="true" text="Dual">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="playerCount" />
                                  </toggleGroup>
