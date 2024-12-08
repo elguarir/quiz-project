@@ -21,6 +21,10 @@ import org.quizproject.quizproject.Models.Question;
 import org.quizproject.quizproject.Models.Category;
 import org.quizproject.quizproject.Models.Option;
 import org.quizproject.quizproject.Models.User;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.geometry.Pos;
+import javafx.scene.text.Font;
 
 import java.util.List;
 
@@ -52,6 +56,9 @@ public class PlayAloneController {
     @FXML
     private ImageView userLogo;
 
+    @FXML
+    private GridPane answersGrid;
+
     private Category category;
     private List<Question> questions;
     private int currentQuestionIndex = 0;
@@ -60,11 +67,15 @@ public class PlayAloneController {
     private Timeline timeline;
     private int timeRemaining = 120;
 
-    
+    private Option selectedOption;
+    private Pane selectedPane;
+
+    private int correctAnswers = 0;
+    private int initialTime = 120;
 
     @FXML
     public void initialize() {
-        startTimer();  // Start the countdown timer
+        startTimer(); // Start the countdown timer
         loadQuestions();
         displayQuestion();
 
@@ -93,7 +104,10 @@ public class PlayAloneController {
         } else {
             timeline.stop();
             timer.setText("00:00");
-            onFinishButtonClicked(null);  // Trigger quiz end
+            finishButton.setDisable(true);
+            nextButton.setDisable(true);
+            int timeTaken = initialTime - timeRemaining;
+            MainApplication.getInstance().showQuizResults(correctAnswers, questions.size(), timeTaken);
         }
     }
 
@@ -105,57 +119,105 @@ public class PlayAloneController {
         if (questions.isEmpty()) {
             System.out.println("No questions found for this category.");
             nextButton.setDisable(true);
-            finishButton.setDisable(true);// Disable "Next" button if no questions exist
+            finishButton.setDisable(true);
         }
     }
 
-    // Display the current question and its options
     private void displayQuestion() {
         if (currentQuestionIndex < questions.size()) {
             Question question = questions.get(currentQuestionIndex);
-            QstNum.setText("Question "+question.getId());
+            QstNum.setText("Question " + question.getId());
             labelQuestionText.setText(question.getContent());
 
+            // Set next button text based on question position
+            if (currentQuestionIndex == questions.size() - 1) {
+                nextButton.setText("Show Results");
+            } else {
+                nextButton.setText("Next");
+            }
+
+            answersGrid.getChildren().clear();
+            selectedOption = null;
+            selectedPane = null;
+
             List<Option> options = question.getOptions();
-            labelAnswer1.setText(options.get(0).getContent());
-            labelAnswer2.setText(options.get(1).getContent());
-            labelAnswer3.setText(options.get(2).getContent());
-            labelAnswer4.setText(options.get(3).getContent());
+
+            for (int i = 0; i < options.size(); i++) {
+                Option option = options.get(i);
+                Pane optionPane = createOptionPane(option);
+
+                answersGrid.add(optionPane, i % 2, i / 2);
+            }
         }
     }
 
-    // Handle click event on 'Next' button
+    private Pane createOptionPane(Option option) {
+        Pane pane = new Pane();
+        pane.setPrefHeight(200.0);
+        pane.setPrefWidth(200.0);
+        pane.setStyle("-fx-background-color: #404040; -fx-background-radius: 10px; -fx-border-radius: 10px;");
+
+        Label label = new Label(option.getContent());
+        label.setAlignment(Pos.CENTER);
+        label.setTextFill(javafx.scene.paint.Color.WHITE);
+        label.setWrapText(true);
+        label.setFont(new Font("System Bold", 16.0));
+        label.setPrefWidth(330.0);
+        label.setPrefHeight(101.0);
+        label.setLayoutX(17.0);
+        label.setLayoutY(13.0);
+
+        pane.getChildren().add(label);
+
+        pane.setOnMouseClicked(e -> handleOptionSelection(option, pane));
+
+        return pane;
+    }
+
+    private void handleOptionSelection(Option option, Pane pane) {
+        if (selectedPane != null) {
+            selectedPane
+                    .setStyle("-fx-background-color: #404040; -fx-background-radius: 10px; -fx-border-radius: 10px;");
+        }
+
+        selectedOption = option;
+        selectedPane = pane;
+        pane.setStyle("-fx-background-color: #97d6f7; -fx-background-radius: 10px; -fx-border-radius: 10px;");
+    }
+
     @FXML
     public void onNextButtonClicked(ActionEvent event) {
+        if (selectedOption != null) {
+            if (selectedOption.isCorrect()) {
+                correctAnswers++;
+            }
+        }
+
         if (currentQuestionIndex < questions.size() - 1) {
             currentQuestionIndex++;
-            displayQuestion();  // Update the display
+            displayQuestion();
         } else {
-            nextButton.setDisable(true);  // Disable the next button when there are no more questions
-            System.out.println("End of questions.");
+            nextButton.setDisable(true);
             timeline.stop();
-
+            int timeTaken = initialTime - timeRemaining;
+            MainApplication.getInstance().showQuizResults(correctAnswers, questions.size(), timeTaken);
         }
     }
 
     // Handle click event on 'Finish' button
     @FXML
     public void onFinishButtonClicked(ActionEvent event) {
-        // Create a custom dialog
         Stage dialog = new Stage();
         dialog.setResizable(false);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initStyle(StageStyle.UTILITY);
         dialog.setTitle("Confirm Finish");
 
-        // Create a message label
         Label message = new Label("Are you sure you want to finish?\nAll unsaved progress will be lost.");
 
-        // Create "Cancel" and "OK" buttons
         Button cancelButton = new Button("Cancel");
         Button okButton = new Button("OK");
 
-        // Add button actions
         cancelButton.setOnAction(e -> {
             dialog.close(); // Close dialog and cancel action
             System.out.println("Quiz not finished");
@@ -167,25 +229,20 @@ public class PlayAloneController {
             nextButton.setDisable(true);
 
             timeline.stop(); // Stop the timer
-            MainApplication.getInstance().showHomeScreen();
-            // Additional actions like saving quiz results can be added here
+            int timeTaken = initialTime - timeRemaining;
+            MainApplication.getInstance().showQuizResults(correctAnswers, questions.size(), timeTaken);
         });
 
-        // Customize button layout: Cancel on the left, OK on the right
         HBox buttonLayout = new HBox(10, cancelButton, okButton);
         buttonLayout.setStyle("-fx-alignment: center-right;");
 
-        // Create the layout
         VBox layout = new VBox(10, message, buttonLayout);
         layout.setStyle("-fx-padding: 20; -fx-alignment: center;");
 
-        // Set up the dialog scene
         Scene scene = new Scene(layout);
         dialog.setScene(scene);
 
-        // Show the dialog
         dialog.showAndWait();
     }
-
 
 }

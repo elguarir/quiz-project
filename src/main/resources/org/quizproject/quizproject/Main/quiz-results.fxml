@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.quizproject.quizproject.Controllers.QuizResultsController">
+    <children>
+        <BorderPane prefHeight="700.0" prefWidth="900.0">
+            <center>
+                <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #faf5f5;">
+                    <children>
+                        <Label text="Quiz Results">
+                            <font>
+                                <Font size="36.0" />
+                            </font>
+                        </Label>
+                        
+                        <VBox alignment="CENTER" spacing="15.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #d9d9d9;">
+                            <children>
+                                <Label fx:id="scoreLabel" text="Your Score: 0/0">
+                                    <font>
+                                        <Font size="24.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="timeLabel" text="Time Taken: 0:00">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="percentageLabel" text="Percentage: 0%">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        
+                        <HBox alignment="CENTER" spacing="20.0">
+                            <children>
+                                <Button fx:id="tryAgainButton" onAction="#onTryAgainClicked" style="-fx-background-color: #97d6f7; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-color: #000;" text="Try Again">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="homeButton" onAction="#onHomeClicked" style="-fx-background-color: #faaaaa; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-color: #000;" text="Back to Home">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

@@ -82,9 +82,18 @@ public class CreateQuizController {
     }
 
     private void handleSinglePlayer() {
+        
+        if (selectedCategory.getQuestions().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Input Error");
+            alert.setHeaderText(null);
+            alert.setContentText("No questions available for this category");
+            alert.showAndWait();
+        } else {
+            MainApplication.getInstance().showPlayAlone();
+            dialogStage.close();
+        }
 
-        MainApplication.getInstance().showPlayAlone();
-        dialogStage.close();
     }
 
     private void handleMultiPlayer() {
@@ -145,7 +154,7 @@ public class CreateQuizController {
                 throw new IllegalArgumentException("Failed to create room");
             }
 
-            // Continue with room creation logic
+            MainApplication.getInstance().showPlayMulti();
 
         } catch (IllegalArgumentException e) {
             showError(e.getMessage());

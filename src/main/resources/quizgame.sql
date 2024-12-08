@@ -122,3 +122,7 @@ ALTER TABLE `scores` ADD CONSTRAINT `scores_room_id_fkey` FOREIGN KEY (`room_id`
 
 -- AddForeignKey
 ALTER TABLE `scores` ADD CONSTRAINT `scores_user_id_fkey` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+ALTER TABLE rooms ADD COLUMN max_players INTEGER NOT NULL DEFAULT 2;
+ALTER TABLE rooms ADD COLUMN quiz_time INTEGER NOT NULL DEFAULT 5;

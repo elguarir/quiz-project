@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import org.quizproject.quizproject.Controllers.QuizResultsController;
 import org.quizproject.quizproject.Models.User;
 
 public class MainApplication extends Application {
@@ -37,12 +38,30 @@ public class MainApplication extends Application {
         loadScreen("Main/room-questions-alone.fxml", "Quizzy - Quiz Alone");
     }
 
+    public void showPlayMulti() {
+        loadScreen("Main/room-questions-multi.fxml", "Quizzy - Quiz Multiplayer");
+    }
+
     public void showSignUpScreen() {
         loadScreen("Authentification/signUp-view.fxml", "Quizzy - Sign Up");
     }
 
     public void showHomeScreen() {
         loadScreen("Main/home-view.fxml", "Quizzy - Home");
+    }
+
+    public void showQuizResults(int correctAnswers, int totalQuestions, int timeTaken) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/quizproject/quizproject/Main/quiz-results.fxml"));
+            Scene scene = new Scene(loader.load(), WINDOW_WIDTH, WINDOW_HEIGHT);
+            QuizResultsController controller = loader.getController();
+            controller.setResults(correctAnswers, totalQuestions, timeTaken);
+            primaryStage.setTitle("Quizzy - Results");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadScreen(String fxmlPath, String title) {
@@ -64,7 +83,6 @@ public class MainApplication extends Application {
     public User getCurrentUser() {
         return currentUser;
     }
-
 
     public static void main(String[] args) {
         launch(args);
