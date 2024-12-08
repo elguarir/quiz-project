@@ -36,7 +36,7 @@ public class CreateQuizController {
     private TextField quizTitleField;
     @FXML
     private TextArea quizDescriptionField;
-    private Category selectedCategory;
+    private static Category selectedCategory;
 
     private Stage dialogStage;
 
@@ -70,8 +70,12 @@ public class CreateQuizController {
         }
     }
 
-    public void setCategory(Category category) {
-        this.selectedCategory = category;
+    public static void setCategory(Category category) {
+        selectedCategory = category;
+    }
+
+    public static Category getCategory() {
+        return selectedCategory;
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -83,10 +87,6 @@ public class CreateQuizController {
         MainApplication.getInstance().showPlayAlone();
         dialogStage.close();
     }
-
-
-
-
 
     private void handleMultiPlayer() {
         buttonsWrapper.setVisible(false);

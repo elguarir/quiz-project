@@ -36,6 +36,7 @@ public class MainApplication extends Application {
     public void showSignUpScreen() {
         loadScreen("Authentification/signUp-view.fxml", "Quizzy - Sign Up");
     }
+    
     public void showHomeScreen() {
         loadScreen("Main/home-view.fxml", "Quizzy - Home");
     }

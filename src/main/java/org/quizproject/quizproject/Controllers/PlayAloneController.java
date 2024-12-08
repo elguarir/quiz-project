@@ -1,14 +1,11 @@
 package org.quizproject.quizproject.Controllers;
 
-import com.sun.javafx.charts.Legend;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,13 +17,12 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.quizproject.quizproject.Dao.QuestionDao;
 import org.quizproject.quizproject.MainApplication;
-import org.quizproject.quizproject.Models.Category;
 import org.quizproject.quizproject.Models.Question;
+import org.quizproject.quizproject.Models.Category;
 import org.quizproject.quizproject.Models.Option;
 import org.quizproject.quizproject.Models.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public class PlayAloneController {
 
@@ -56,7 +52,7 @@ public class PlayAloneController {
     @FXML
     private ImageView userLogo;
 
-    private long categoryId = 1;  // Example category ID for demo
+    private Category category;
     private List<Question> questions;
     private int currentQuestionIndex = 0;
     private QuestionDao questionDao = new QuestionDao();
@@ -64,11 +60,7 @@ public class PlayAloneController {
     private Timeline timeline;
     private int timeRemaining = 120;
 
-//bach nkhli quiz dynamique
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
+    
 
     @FXML
     public void initialize() {
@@ -107,7 +99,9 @@ public class PlayAloneController {
 
     // Load questions for a given category
     private void loadQuestions() {
-        questions = questionDao.getQuestionsByCategory(categoryId);
+        Category category = CreateQuizController.getCategory();
+        System.out.println("Selected CAT " + category.getName());
+        questions = questionDao.getQuestionsByCategory(category.getId());
         if (questions.isEmpty()) {
             System.out.println("No questions found for this category.");
             nextButton.setDisable(true);
@@ -149,6 +143,7 @@ public class PlayAloneController {
     public void onFinishButtonClicked(ActionEvent event) {
         // Create a custom dialog
         Stage dialog = new Stage();
+        dialog.setResizable(false);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initStyle(StageStyle.UTILITY);
         dialog.setTitle("Confirm Finish");

@@ -87,12 +87,12 @@ public class HomeController {
         return box;
     }
 
-
-//    }
+    // }
 
     private void handleCategoryClick(Category category) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/quizproject/quizproject/Main/create-quiz.fxml"));
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/org/quizproject/quizproject/Main/create-quiz.fxml"));
             AnchorPane page = loader.load();
 
             Stage dialogStage = new Stage();
@@ -102,7 +102,7 @@ public class HomeController {
 
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
-
+            dialogStage.setResizable(false);
             CreateQuizController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setCategory(category);
