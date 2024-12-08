@@ -1,8 +1,8 @@
 package org.quizproject.quizproject.Tests;
-import org.quizproject.quizproject.MainApplication;
+import org.quizproject.quizproject.Models.User;
 
 public class TestSockets {
     public static void main(String[] args) {
-        System.out.println(MainApplication.getUserIp());
+        System.out.println(User.getUserIp());
     }
 }
