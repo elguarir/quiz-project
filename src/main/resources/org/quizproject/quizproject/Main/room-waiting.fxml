@@ -61,6 +61,11 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Button fx:id="copyCodeButton" layoutX="216.0" layoutY="22.0" mnemonicParsing="false" style="-fx-background-color: #f1f2f0; -fx-border-color: #d9d9d9; -fx-border-width: 0.7px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Copy Code" visible="false">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
                   <Pane fx:id="privateBadge" layoutX="136.0" layoutY="22.0" prefHeight="24.0" prefWidth="69.0" style="-fx-background-color: #d4f571; -fx-background-radius: 7px; -fx-border-radius: 7px; -fx-border-color: #333; -fx-border-width: 0.5px;">
                      <children>
                         <Label layoutX="17.0" layoutY="4.0" text="Private" />

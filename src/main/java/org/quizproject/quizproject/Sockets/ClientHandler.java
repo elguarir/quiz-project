@@ -1,79 +1,72 @@
 package org.quizproject.quizproject.Sockets;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
-public class ClientHandler extends Thread {
+public class ClientHandler implements Runnable {
     private final Socket socket;
-    private final QuizServer server;
-    private ObjectInputStream in;
     private ObjectOutputStream out;
-    private String userId;
-    private int currentQuestion = 0;
+    private ObjectInputStream in;
+    private final BiConsumer<SocketMessage, ClientHandler> messageHandler;
+    private final Consumer<String> onDisconnect;
+    private volatile boolean running = true;
 
-    public ClientHandler(Socket socket, QuizServer server) {
+    public ClientHandler(Socket socket, BiConsumer<SocketMessage, ClientHandler> messageHandler, Consumer<String> onDisconnect) {
         this.socket = socket;
-        this.server = server;
+        this.messageHandler = messageHandler;
+        this.onDisconnect = onDisconnect;
+        try {
+            this.out = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            out.flush();
+            this.in = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void run() {
+        while (running && !socket.isClosed()) {
+            try {
+                Object received = in.readObject();
+                if (received instanceof SocketMessage) {
+                    messageHandler.accept((SocketMessage) received, this);
+                }
+            } catch (EOFException e) {
+                // Connection closed normally
+                break;
+            } catch (IOException | ClassNotFoundException e) {
+                if (running) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+        close();
+    }
+
+    public synchronized void sendMessage(SocketMessage message) {
         try {
-            out = new ObjectOutputStream(socket.getOutputStream());
-            in = new ObjectInputStream(socket.getInputStream());
-
-            SocketMessage joinMessage = (SocketMessage) in.readObject();
-            if (joinMessage.getType() == SocketMessage.MessageType.JOIN_ROOM) {
-                this.userId = (String) joinMessage.getPayload();
-                server.addClient(userId, this);
+            if (out != null && !socket.isClosed()) {
+                out.writeObject(message);
+                out.flush();
             }
-
-            while (true) {
-                SocketMessage message = (SocketMessage) in.readObject();
-                handleMessage(message);
+        } catch (IOException e) {
+            if (running) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            handleDisconnect();
         }
     }
 
-    private void handleMessage(SocketMessage message) {
+    public void close() {
+        running = false;
         try {
-            switch (message.getType()) {
-                case ANSWER_SUBMITTED:
-                    currentQuestion++;
-                    server.updateProgress(userId, currentQuestion);
-                    break;
-                case QUIZ_COMPLETED:
-                    server.updateProgress(userId, -1); // -1 means quiz finished
-                    server.broadcast(message);
-                    break;
-                case LEAVE_ROOM:
-                    handleDisconnect();
-                    break;
-                default:
-                    server.broadcast(message);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void sendMessage(SocketMessage message) {
-        try {
-            out.writeObject(message);
-            out.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void handleDisconnect() {
-        server.removeClient(userId);
-        try {
-            socket.close();
-        } catch (Exception e) {
+            if (out != null) out.close();
+            if (in != null) in.close();
+            if (socket != null) socket.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

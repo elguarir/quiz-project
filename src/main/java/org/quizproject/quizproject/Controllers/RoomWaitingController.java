@@ -1,5 +1,7 @@
 package org.quizproject.quizproject.Controllers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -8,21 +10,31 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 import org.quizproject.quizproject.MainApplication;
+import org.quizproject.quizproject.Models.Question;
+import org.quizproject.quizproject.Models.QuestionDTO;
 import org.quizproject.quizproject.Models.Room;
 import org.quizproject.quizproject.Models.User;
 import org.quizproject.quizproject.Dao.RoomParticipantDao;
+import org.quizproject.quizproject.Dao.RoomQuestionDao;
 import org.quizproject.quizproject.Dao.UserDao;
 import org.quizproject.quizproject.Dao.RoomDao;
+import org.quizproject.quizproject.Sockets.QuizClient;
+import org.quizproject.quizproject.Sockets.QuizServer;
+import org.quizproject.quizproject.Sockets.SocketMessage;
 
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.stream.Collectors;
 
 public class RoomWaitingController {
     @FXML
@@ -47,21 +59,26 @@ public class RoomWaitingController {
     private Label currentUserLabel;
     @FXML
     private ImageView avatarImage;
+    @FXML
+    private Button copyCodeButton;
 
     private Room currentRoom;
     private Timer refreshTimer;
     private RoomParticipantDao participantDao = new RoomParticipantDao();
     private UserDao userDao = new UserDao();
     private final RoomDao roomDao = new RoomDao();
+    private QuizServer quizServer;
+    private QuizClient quizClient;
+    private User currentUser;
 
     @FXML
     public void initialize() {
-        User currentUser = MainApplication.getInstance().getCurrentUser();
+        currentUser = MainApplication.getInstance().getCurrentUser();
         if (currentUser != null) {
             if (currentUserLabel != null) {
                 currentUserLabel.setText(currentUser.getName());
             }
-            
+
             // Load avatar image
             if (avatarImage != null) {
                 String avatarUrl = currentUser.getAvatar();
@@ -95,12 +112,36 @@ public class RoomWaitingController {
         if (quizTime != null) {
             quizTime.setText("Time: " + room.getQuizTime() + " minutes");
         }
-        
-        // Handle visibility of privacy badges
-        if (privateBadge != null && publicBadge != null) {
+
+        // Handle visibility of privacy badges and code button
+        if (privateBadge != null && publicBadge != null && copyCodeButton != null) {
             boolean isPrivate = room.isPrivate();
             privateBadge.setVisible(isPrivate);
             publicBadge.setVisible(!isPrivate);
+            copyCodeButton.setVisible(isPrivate && currentUser.getId() == room.getHostId());
+            
+            if (isPrivate && currentUser.getId() == room.getHostId()) {
+                copyCodeButton.setOnAction(e -> {
+                    final Clipboard clipboard = Clipboard.getSystemClipboard();
+                    final ClipboardContent content = new ClipboardContent();
+                    content.putString(room.getCode());
+                    clipboard.setContent(content);
+                    
+                    // Show feedback
+                    String originalText = copyCodeButton.getText();
+                    copyCodeButton.setText("Copied!");
+                    copyCodeButton.setStyle("-fx-background-color: #d4f571; -fx-border-color: #d9d9d9;");
+                    
+                    // Reset after 2 seconds
+                    Timeline timeline = new Timeline(new KeyFrame(
+                        Duration.seconds(2),
+                        ae -> {
+                            copyCodeButton.setText(originalText);
+                            copyCodeButton.setStyle("-fx-background-color: #f1f2f0; -fx-border-color: #d9d9d9;");
+                        }));
+                    timeline.play();
+                });
+            }
         }
 
         User host = userDao.getUserById(room.getHostId());
@@ -114,37 +155,78 @@ public class RoomWaitingController {
             startButton.setVisible(currentUser.getId() == room.getHostId());
         }
 
-        // Start periodic refresh
-        startRefreshTimer();
+        // Remove timer-based refresh
+        // startRefreshTimer();
+
+        // Instead, setup socket connection
+        setupSocketConnection(room);
 
         // Initial refresh
         refreshParticipants();
     }
 
-    private void startRefreshTimer() {
-        refreshTimer = new Timer(true);
-        refreshTimer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> refreshParticipants());
-            }
-        }, 0, 2000); // Refresh every 2 seconds
+    private void refreshParticipants() {
+        if (participantsGrid == null)
+            return;
+        List<User> participants = participantDao.getRoomParticipants(currentRoom.getId());
+        updateParticipantsUI(participants);
     }
 
-    private void refreshParticipants() {
-        if (participantsGrid == null) {
-            return;
+    @FXML
+    private void setupSocketConnection(Room room) {
+        currentUser = MainApplication.getInstance().getCurrentUser();
+        
+        if (currentUser.getId() == room.getHostId()) {
+            // Load questions for the room
+            List<Question> questions = new RoomQuestionDao().getRoomQuestionsInOrder(room.getId());
+            // Host: create and start server with questions
+            quizServer = new QuizServer(String.valueOf(room.getId()), 8191, questions);
+            quizServer.start();
+            startClientConnection(room);
+        } else {
+            startClientConnection(room);
         }
+    }
 
-        List<User> participants = participantDao.getRoomParticipants(currentRoom.getId());
+    private void startClientConnection(Room room) {
+        quizClient = new QuizClient(String.valueOf(currentUser.getId()), this::handleSocketMessage);
+        quizClient.connect(room.getHostIp(), 8191, (int)room.getId());
+    }
+
+    private void handleSocketMessage(SocketMessage message) {
+        Platform.runLater(() -> {
+            switch (message.getType()) {
+                case PLAYER_LIST:
+                    @SuppressWarnings("unchecked")
+                    List<String> playerIds = (List<String>) message.getPayload();
+                    List<User> participants = playerIds.stream()
+                            .map(id -> userDao.getUserById(Long.parseLong(id)))
+                            .collect(Collectors.toList());
+                    updateParticipantsUI(participants);
+                    break;
+                case PLAYER_JOINED:
+                    // Just wait for PLAYER_LIST update
+                    break;
+                case PLAYER_LEFT:
+                    // Just wait for PLAYER_LIST update
+                    break;
+                case START_QUIZ:
+                    MainApplication.getInstance().showPlayMulti(currentRoom);
+                    break;
+            }
+        });
+    }
+
+    private void updateParticipantsUI(List<User> participants) {
+        if (participantsGrid == null)
+            return;
+
+        participantsGrid.getChildren().clear();
 
         if (participantsLabel != null) {
             participantsLabel.setText(participants.size() + "/" + currentRoom.getMaxPlayers() + " joined (Waiting)");
         }
 
-        participantsGrid.getChildren().clear();
-
-        // Add participants to grid
         for (int i = 0; i < participants.size(); i++) {
             User participant = participants.get(i);
             AnchorPane participantPane = createParticipantPane(participant);
@@ -176,21 +258,13 @@ public class RoomWaitingController {
         avatarView.setPreserveRatio(true);
         avatarView.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 0);");
 
-        // Load avatar image from URL
+        // Load avatar image
         String avatarUrl = participant.getAvatar();
         if (avatarUrl != null && !avatarUrl.isEmpty()) {
-            try {
-                Image avatarImage = new Image(avatarUrl, true);
-                avatarView.setImage(avatarImage);
-            } catch (Exception e) {
-                Image defaultAvatar = new Image(
-                        getClass().getResource("/org/quizproject/quizproject/Assets/avatar.png").toExternalForm());
-                avatarView.setImage(defaultAvatar);
-            }
+            avatarView.setImage(new Image(avatarUrl));
         } else {
-            Image defaultAvatar = new Image(
-                    getClass().getResource("/org/quizproject/quizproject/Assets/avatar.png").toExternalForm());
-            avatarView.setImage(defaultAvatar);
+            avatarView.setImage(new Image(
+                    getClass().getResource("/org/quizproject/quizproject/Assets/avatar.png").toExternalForm()));
         }
 
         Label nameLabel = new Label(participant.getName() + " #" + participant.getId());
@@ -201,21 +275,25 @@ public class RoomWaitingController {
 
         hbox.getChildren().addAll(avatarView, nameLabel);
         pane.getChildren().add(hbox);
-        pane.setStyle("-fx-border-color: #d9d9d9; -fx-background-radius: 10px; "
-                + "-fx-border-radius: 10px;"
-                + "-fx-background-color: #f8f9fa;");
 
         return pane;
     }
 
     @FXML
     private void handleLeave() {
-        if (refreshTimer != null) {
-            refreshTimer.cancel();
+        if (quizClient != null) {
+            quizClient.sendMessage(new SocketMessage(
+                    SocketMessage.MessageType.LEAVE_ROOM,
+                    currentRoom.getCode(),
+                    String.valueOf(currentUser.getId())));
+        }
+
+        if (quizServer != null) {
+            quizServer.stop();
         }
 
         User currentUser = MainApplication.getInstance().getCurrentUser();
-        
+
         if (currentUser.getId() == currentRoom.getHostId()) {
             // Host is leaving, delete the room
             roomDao.deleteRoom(currentRoom.getId());
@@ -223,21 +301,34 @@ public class RoomWaitingController {
             // Regular participant leaving
             participantDao.removeParticipant(currentRoom.getId(), currentUser.getId());
         }
-        
+
         MainApplication.getInstance().showHomeScreen();
     }
 
     @FXML
     private void handleStart() {
-        if (refreshTimer != null) {
-            refreshTimer.cancel();
+        if (quizServer != null) {
+            quizServer.startQuiz();
         }
-        MainApplication.getInstance().showPlayMulti();
+        
+        // Just send START_QUIZ signal without questions
+        quizClient.sendMessage(new SocketMessage(
+            SocketMessage.MessageType.START_QUIZ,
+            currentRoom.getCode(),
+            null
+        ));
+        MainApplication.getInstance().showPlayMulti(currentRoom);
     }
 
     public void cleanup() {
-        if (refreshTimer != null) {
-            refreshTimer.cancel();
+        if (quizServer != null) {
+            quizServer.stop();
+        }
+        if (quizClient != null) {
+            quizClient.sendMessage(new SocketMessage(
+                    SocketMessage.MessageType.LEAVE_ROOM,
+                    currentRoom.getCode(),
+                    String.valueOf(currentUser.getId())));
         }
     }
 }

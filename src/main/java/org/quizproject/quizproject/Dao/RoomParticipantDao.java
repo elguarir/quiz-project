@@ -1,6 +1,4 @@
 package org.quizproject.quizproject.Dao;
-
-import org.quizproject.quizproject.Models.RoomParticipant;
 import org.quizproject.quizproject.Models.User;
 import java.util.List;
 import java.sql.Connection;

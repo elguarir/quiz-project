@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import org.quizproject.quizproject.Controllers.MultiplayerController;
 import org.quizproject.quizproject.Controllers.QuizResultsController;
 import org.quizproject.quizproject.Controllers.RoomWaitingController;
 import org.quizproject.quizproject.Models.Room;
@@ -38,7 +39,21 @@ public class MainApplication extends Application {
     }
 
     public void showPlayMulti() {
-        loadScreen("Main/room-questions.fxml", "Quizzy - Quiz Multiplayer");
+        loadScreen("Main/room-questions-multi.fxml", "Quizzy - Quiz Multiplayer");
+    }
+
+    public void showPlayMulti(Room room) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/quizproject/quizproject/Main/room-questions-multi.fxml"));
+            Scene scene = new Scene(loader.load(), WINDOW_WIDTH, WINDOW_HEIGHT);
+            MultiplayerController controller = loader.getController();
+            controller.setRoom(room);  // This will now trigger initializeRoom() after setting the room
+            primaryStage.setTitle("Quizzy - Quiz Multiplayer");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void showSignUpScreen() {

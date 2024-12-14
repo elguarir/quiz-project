@@ -7,22 +7,32 @@ public class SocketMessage implements Serializable {
 
     public enum MessageType {
         JOIN_ROOM,
-        PLAYER_JOINED,
-        PLAYER_LIST,
+        LEAVE_ROOM,
         START_QUIZ,
         ANSWER_SUBMITTED,
         PROGRESS_UPDATE,
         QUIZ_COMPLETED,
-        LEAVE_ROOM
+        PLAYER_LIST,
+        PLAYER_JOINED,
+        PLAYER_LEFT
     }
 
-    private MessageType type;
-    private String roomId;
-    private Object payload;
+    private final MessageType type;
+    private final String roomCode;
+    private final Object payload;
+    private final String senderId;
 
-    public SocketMessage(MessageType type, String roomId, Object payload) {
+    public SocketMessage(MessageType type, String roomCode, Object payload) {
         this.type = type;
-        this.roomId = roomId;
+        this.roomCode = roomCode;
+        this.payload = payload;
+        this.senderId = null;
+    }
+
+    public SocketMessage(MessageType type, String roomCode, String senderId, Object payload) {
+        this.type = type;
+        this.roomCode = roomCode;
+        this.senderId = senderId;
         this.payload = payload;
     }
 
@@ -30,11 +40,15 @@ public class SocketMessage implements Serializable {
         return type;
     }
 
-    public String getRoomId() {
-        return roomId;
+    public String getRoomCode() {
+        return roomCode;
     }
 
     public Object getPayload() {
         return payload;
+    }
+
+    public String getSenderId() {
+        return senderId;
     }
 }

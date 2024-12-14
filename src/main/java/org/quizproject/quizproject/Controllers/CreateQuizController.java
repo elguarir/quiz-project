@@ -137,10 +137,11 @@ public class CreateQuizController {
 
             Room room = new Room();
             room.setHostId(currentUser.getId());
-            room.setHostIp(User.getUserIp());
+            room.setHostIp(User.getUserIp()); // Use actual host IP instead of localhost
             room.setPrivate(isPrivate);
             room.setMaxPlayers(maxPlayerInt);
             room.setQuizTime(quizTime);
+            room.setCode(isPrivate ? room.generateCode() : ""); // Generate code if private
 
             // The code will be generated automatically in RoomDao if isPrivate is true
             RoomDao roomDao = new RoomDao();
