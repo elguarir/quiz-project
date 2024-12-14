@@ -5,10 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
 import org.quizproject.quizproject.Controllers.QuizResultsController;
+import org.quizproject.quizproject.Controllers.RoomWaitingController;
+import org.quizproject.quizproject.Models.Room;
 import org.quizproject.quizproject.Models.User;
 
 public class MainApplication extends Application {
@@ -39,7 +38,7 @@ public class MainApplication extends Application {
     }
 
     public void showPlayMulti() {
-        loadScreen("Main/room-questions-multi.fxml", "Quizzy - Quiz Multiplayer");
+        loadScreen("Main/room-questions.fxml", "Quizzy - Quiz Multiplayer");
     }
 
     public void showSignUpScreen() {
@@ -57,6 +56,20 @@ public class MainApplication extends Application {
             QuizResultsController controller = loader.getController();
             controller.setResults(correctAnswers, totalQuestions, timeTaken);
             primaryStage.setTitle("Quizzy - Results");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showWaitingRoom(Room room) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/quizproject/quizproject/Main/room-waiting.fxml"));
+            Scene scene = new Scene(loader.load(), WINDOW_WIDTH, WINDOW_HEIGHT);
+            RoomWaitingController controller = loader.getController();
+            controller.initData(room);
+            primaryStage.setTitle("Quizzy - Waiting Room");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (Exception e) {

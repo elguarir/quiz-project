@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -87,19 +86,11 @@
                                     <Insets right="15.0" />
                                  </padding>
                               </HBox>
-                              <HBox fx:id="roomCodeWrapper" alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="550.0" spacing="15.0" GridPane.columnIndex="1" visible="false">
-                                 <children>
-                                    <Label text="Code">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <PasswordField fx:id="roomCode" promptText="Numbers only!" />
-                                 </children>
-                                 <padding>
-                                    <Insets right="15.0" />
-                                 </padding>
-                              </HBox>
+                              <Label fx:id="roomCodeLabel" visible="false" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </GridPane>
                         <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="550.0" spacing="15.0">

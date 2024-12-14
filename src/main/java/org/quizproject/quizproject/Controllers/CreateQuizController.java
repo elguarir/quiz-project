@@ -6,9 +6,17 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.quizproject.quizproject.Models.Category;
+import org.quizproject.quizproject.Models.Question;
 import org.quizproject.quizproject.Models.Room;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.quizproject.quizproject.MainApplication;
+import org.quizproject.quizproject.Dao.QuestionDao;
 import org.quizproject.quizproject.Dao.RoomDao;
+import org.quizproject.quizproject.Dao.RoomParticipantDao;
+import org.quizproject.quizproject.Dao.RoomQuestionDao;
 import org.quizproject.quizproject.Models.User;
 
 public class CreateQuizController {
@@ -25,7 +33,7 @@ public class CreateQuizController {
     @FXML
     private ComboBox<String> roomType;
     @FXML
-    private PasswordField roomCode;
+    private Label roomCodeLabel;
     @FXML
     private Slider quizTimeSlider;
     @FXML
@@ -82,7 +90,7 @@ public class CreateQuizController {
     }
 
     private void handleSinglePlayer() {
-        
+
         if (selectedCategory.getQuestions().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Input Error");
@@ -103,18 +111,15 @@ public class CreateQuizController {
 
     private void handleRoomTypeChange() {
         boolean isPrivate = "Private".equals(roomType.getValue());
-        roomCodeWrapper.setVisible(isPrivate);
-        roomCode.setDisable(!isPrivate);
+        if (isPrivate) {
+            roomCodeLabel.setText("Room code will be generated automatically");
+            roomCodeLabel.setVisible(true);
+        } else {
+            roomCodeLabel.setVisible(false);
+        }
     }
 
     private void validateRoomCreation() throws IllegalArgumentException {
-        if ("Private".equals(roomType.getValue()) &&
-                (roomCode.getText() == null || roomCode.getText().trim().isEmpty())) {
-            throw new IllegalArgumentException("Room code is required for private rooms");
-        }
-        if (!roomCode.getText().matches("[0-9]+") && "Private".equals(roomType.getValue())) {
-            throw new IllegalArgumentException("Room code must be a number");
-        }
         if (playerCount.getSelectedToggle() == null) {
             throw new IllegalArgumentException("Please select number of players");
         }
@@ -124,29 +129,20 @@ public class CreateQuizController {
         try {
             validateRoomCreation();
             User currentUser = MainApplication.getInstance().getCurrentUser();
-            String roomCodeValue = roomCode.getText();
             boolean isPrivate = "Private".equals(roomType.getValue());
             RadioButton selectedPlayerCount = (RadioButton) playerCount.getSelectedToggle();
             String maxPlayers = selectedPlayerCount != null ? selectedPlayerCount.getText() : "Dual";
             int maxPlayerInt = maxPlayers.equals("Dual") ? 2 : maxPlayers.equals("Tri-Battle") ? 3 : 4;
             int quizTime = (int) quizTimeSlider.getValue();
 
-            System.out.println("Room Details:");
-            System.out.println("Host: " + currentUser.getName());
-            System.out.println("Room Type: " + (isPrivate ? "Private" : "Public"));
-            System.out.println("Room Code: " + (isPrivate ? roomCodeValue : "N/A"));
-            System.out.println("Max Players: " + maxPlayers);
-            System.out.println("Quiz Time: " + quizTime + " minutes");
-            System.out.println("Category: " + selectedCategory.getName());
-
             Room room = new Room();
             room.setHostId(currentUser.getId());
-            room.setHostIp(currentUser.getUserIp()); // Local host for testing
-            room.setCode(isPrivate ? roomCodeValue : null);
+            room.setHostIp(User.getUserIp());
             room.setPrivate(isPrivate);
             room.setMaxPlayers(maxPlayerInt);
             room.setQuizTime(quizTime);
 
+            // The code will be generated automatically in RoomDao if isPrivate is true
             RoomDao roomDao = new RoomDao();
             Room createdRoom = roomDao.createRoom(room);
 
@@ -154,13 +150,26 @@ public class CreateQuizController {
                 throw new IllegalArgumentException("Failed to create room");
             }
 
-            MainApplication.getInstance().showPlayMulti();
+            // Add host as participant
+            RoomParticipantDao participantDao = new RoomParticipantDao();
+            participantDao.addParticipant(createdRoom.getId(), currentUser.getId(), User.getUserIp());
+
+            QuestionDao questionDao = new QuestionDao();
+            List<Question> randomQuestions = questionDao.getRandomQuestionsByCategory(selectedCategory.getId(), 10);
+
+            List<Long> questionIds = randomQuestions.stream()
+                    .map(Question::getId)
+                    .collect(Collectors.toList());
+
+            RoomQuestionDao roomQuestionDao = new RoomQuestionDao();
+            roomQuestionDao.saveRoomQuestions(createdRoom.getId(), questionIds);
+
+            MainApplication.getInstance().showWaitingRoom(createdRoom);
+            dialogStage.close();
 
         } catch (IllegalArgumentException e) {
             showError(e.getMessage());
         }
-
-        dialogStage.close();
     }
 
     private void showError(String message) {

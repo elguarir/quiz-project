@@ -1,9 +1,6 @@
-
 package org.quizproject.quizproject.Models;
 
 import java.util.List;
-
-import org.quizproject.quizproject.Dao.DBconnection;
 import java.util.Random;
 
 public class Room {
@@ -18,14 +15,13 @@ public class Room {
     private List<RoomParticipant> participants;
     private int maxPlayers;
     private int quizTime;
-    private String lastHeartbeat;
+    private String hostName;
 
     public Room() {
     };
 
     public Room(long id, String code, boolean isPrivate, String hostIp, String status, long hostId, String createdAt,
-            List<RoomQuestion> questions, List<RoomParticipant> participants, int maxPlayers, int quizTime,
-            String lastHeartbeat) {
+            List<RoomQuestion> questions, List<RoomParticipant> participants, int maxPlayers, int quizTime) {
         this.id = id;
         this.code = code;
         this.isPrivate = isPrivate;
@@ -37,7 +33,6 @@ public class Room {
         this.participants = participants;
         this.maxPlayers = maxPlayers;
         this.quizTime = quizTime;
-        this.lastHeartbeat = lastHeartbeat;
     }
 
     public Room(String code, boolean isPrivate, String hostIp, long hostId, int maxPlayers, int quizTime) {
@@ -123,12 +118,12 @@ public class Room {
         this.quizTime = quizTime;
     }
 
-    public String getLastHeartbeat() {
-        return lastHeartbeat;
+    public String getHostName() {
+        return hostName;
     }
 
-    public void setLastHeartbeat(String lastHeartbeat) {
-        this.lastHeartbeat = lastHeartbeat;
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
     }
 
     public String generateCode() {
@@ -147,6 +142,24 @@ public class Room {
         return participants != null &&
                 participants.size() >= 2 &&
                 participants.size() <= maxPlayers;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", isPrivate=" + isPrivate +
+                ", hostIp='" + hostIp + '\'' +
+                ", status='" + status + '\'' +
+                ", hostId=" + hostId +
+                ", createdAt='" + createdAt + '\'' +
+                ", questions=" + questions +
+                ", participants=" + participants +
+                ", maxPlayers=" + maxPlayers +
+                ", quizTime=" + quizTime +
+                ", hostName='" + hostName + '\'' +
+                '}';
     }
 
 }

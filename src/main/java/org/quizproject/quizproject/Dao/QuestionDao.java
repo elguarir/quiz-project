@@ -44,6 +44,38 @@ public class QuestionDao {
         return questions;
     }
 
+    public List<Question> getRandomQuestionsByCategory(long categoryId, int limit) {
+        List<Question> questions = new ArrayList<>();
+        String query = "SELECT * FROM questions WHERE category_id = ? ORDER BY RAND() LIMIT ?";
+
+        try (Connection conn = dbConnection.getCon();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setLong(1, categoryId);
+            stmt.setInt(2, limit);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Question question = new Question();
+                    question.setId(rs.getLong("id"));
+                    question.setCategoryId(rs.getLong("category_id"));
+                    question.setDifficulty(rs.getString("difficulty"));
+                    question.setContent(rs.getString("content"));
+                    question.setCreatedAt(rs.getString("created_at"));
+                    questions.add(question);
+                }
+            }
+
+            for (Question question : questions) {
+                question.setOptions(getOptionsByQuestionId(question.getId()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return questions;
+    }
+
     public List<Option> getOptionsByQuestionId(long questionId) {
         List<Option> options = new ArrayList<>();
         String query = "SELECT * FROM options WHERE question_id = ?";

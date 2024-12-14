@@ -5,15 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5815fcd8-3ac1-466b-bef5-0403c14b46e4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/CreateQuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/CreateQuizController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/PlayAloneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Controllers/PlayAloneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/DBconnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/DBconnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/QuestionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/QuestionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/RoomParticipantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/RoomParticipantDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/RoomQuestionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Dao/RoomQuestionDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Models/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Models/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Tests/quizRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Tests/quizRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Main/create-quiz.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Main/create-quiz.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Main/room-questions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Main/room-questions.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/Tests/quizRoom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/quizproject/quizproject/quizPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Main/room-questions.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Main/room-waiting.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/quizproject/quizproject/Main/room-waiting.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
