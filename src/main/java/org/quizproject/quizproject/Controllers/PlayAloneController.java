@@ -73,6 +73,8 @@ public class PlayAloneController {
     private int correctAnswers = 0;
     private int initialTime = 120;
 
+    private static final int TOTAL_QUESTIONS = 20;
+
     @FXML
     public void initialize() {
         startTimer(); // Start the countdown timer
@@ -115,18 +117,23 @@ public class PlayAloneController {
     private void loadQuestions() {
         Category category = CreateQuizController.getCategory();
         System.out.println("Selected CAT " + category.getName());
-        questions = questionDao.getQuestionsByCategory(category.getId());
+        
+        // Get exactly 20 random questions instead of paginating
+        questions = questionDao.getRandomQuestionsByCategory(category.getId(), TOTAL_QUESTIONS);
+        
         if (questions.isEmpty()) {
             System.out.println("No questions found for this category.");
             nextButton.setDisable(true);
             finishButton.setDisable(true);
+        } else {
+            System.out.println("Loaded " + questions.size() + " questions");
         }
     }
 
     private void displayQuestion() {
         if (currentQuestionIndex < questions.size()) {
             Question question = questions.get(currentQuestionIndex);
-            QstNum.setText("Question " + question.getId());
+            QstNum.setText("Question " + (currentQuestionIndex + 1) + "/" + TOTAL_QUESTIONS);
             labelQuestionText.setText(question.getContent());
 
             // Set next button text based on question position

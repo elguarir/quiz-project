@@ -9,7 +9,7 @@ public class Category {
     private String name;
     private String description;
     private String createdAt;
-    private List<Question> questions; 
+    private List<Question> questions = null; // Initialize as null instead of loading
     private Color backgroundColor;
     
     
@@ -64,6 +64,10 @@ public class Category {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public boolean hasQuestionsLoaded() {
+        return this.questions != null;
     }
 
      public Color getBackgroundColor() { return backgroundColor; }

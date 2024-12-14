@@ -161,40 +161,45 @@ public class MultiplayerController {
     private void loadQuestions() {
         try {
             RoomQuestionDao roomQuestionDao = new RoomQuestionDao();
-            questions = roomQuestionDao.getRoomQuestionsInOrder(currentRoom.getId());
+            // Only load first batch of questions initially
+            questions = roomQuestionDao.getRoomQuestionsInOrder(currentRoom.getId(), 0, 5);
             
             if (questions == null || questions.isEmpty()) {
                 System.err.println("No questions loaded for room " + currentRoom.getId());
                 return;
             }
 
-            System.out.println("Loaded " + questions.size() + " questions");
-            
-            // Validate that all questions have options
-            boolean allQuestionsValid = questions.stream()
-                .allMatch(q -> q.getOptions() != null && !q.getOptions().isEmpty());
-                
-            if (!allQuestionsValid) {
-                System.err.println("Some questions are missing options!");
-                return;
-            }
+            System.out.println("Loaded initial batch of " + questions.size() + " questions");
             
             // Initialize progress tracking
-            localProgress = new QuizProgress(questions.size());
+            localProgress = new QuizProgress(roomQuestionDao.getRoomQuestionCount(currentRoom.getId()));
             currentQuestionIndex = 0;
             displayQuestion();
             
-            // Only host needs to send START_QUIZ message
             if (MainApplication.getInstance().getCurrentUser().getId() == currentRoom.getHostId()) {
                 quizClient.sendMessage(new SocketMessage(
                     SocketMessage.MessageType.START_QUIZ,
                     currentRoom.getCode(),
-                    null  // No need to send questions anymore
+                    null
                 ));
             }
         } catch (Exception e) {
             System.err.println("Error loading questions: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    private void loadMoreQuestionsIfNeeded() {
+        if (questions != null && currentQuestionIndex >= questions.size() - 2) {
+            RoomQuestionDao roomQuestionDao = new RoomQuestionDao();
+            List<Question> nextBatch = roomQuestionDao.getRoomQuestionsInOrder(
+                currentRoom.getId(),
+                questions.size(),
+                5
+            );
+            if (!nextBatch.isEmpty()) {
+                questions.addAll(nextBatch);
+            }
         }
     }
 
@@ -244,6 +249,7 @@ public class MultiplayerController {
 
                 // Update progress
                 updateProgress();
+                loadMoreQuestionsIfNeeded();
             } catch (Exception e) {
                 System.err.println("Error displaying question: " + e.getMessage());
                 e.printStackTrace();

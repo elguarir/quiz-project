@@ -90,8 +90,11 @@ public class CreateQuizController {
     }
 
     private void handleSinglePlayer() {
-
-        if (selectedCategory.getQuestions().isEmpty()) {
+        // Validate without loading all questions
+        QuestionDao questionDao = new QuestionDao();
+        int questionCount = questionDao.getQuestionCount(selectedCategory.getId());
+        
+        if (questionCount == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Input Error");
             alert.setHeaderText(null);
@@ -101,7 +104,6 @@ public class CreateQuizController {
             MainApplication.getInstance().showPlayAlone();
             dialogStage.close();
         }
-
     }
 
     private void handleMultiPlayer() {
@@ -155,8 +157,13 @@ public class CreateQuizController {
             RoomParticipantDao participantDao = new RoomParticipantDao();
             participantDao.addParticipant(createdRoom.getId(), currentUser.getId(), User.getUserIp());
 
+            // Only load the necessary random questions when actually creating the room
             QuestionDao questionDao = new QuestionDao();
             List<Question> randomQuestions = questionDao.getRandomQuestionsByCategory(selectedCategory.getId(), 10);
+
+            if (randomQuestions.isEmpty()) {
+                throw new IllegalArgumentException("No questions available for this category");
+            }
 
             List<Long> questionIds = randomQuestions.stream()
                     .map(Question::getId)

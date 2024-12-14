@@ -104,4 +104,55 @@ public class RoomQuestionDao {
         
         return questions;
     }
+
+    public List<Question> getRoomQuestionsInOrder(long roomId, int offset, int limit) {
+        List<Question> questions = new ArrayList<>();
+        String query = "SELECT q.* FROM questions q " +
+                      "JOIN room_questions rq ON q.id = rq.question_id " +
+                      "WHERE rq.room_id = ? " +
+                      "ORDER BY rq.order LIMIT ? OFFSET ?";
+
+        try (Connection conn = dbConnection.getCon();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            
+            stmt.setLong(1, roomId);
+            stmt.setInt(2, limit);
+            stmt.setInt(3, offset);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Question question = new Question();
+                    question.setId(rs.getLong("id"));
+                    question.setCategoryId(rs.getLong("category_id"));
+                    question.setContent(rs.getString("content"));
+                    question.setDifficulty(rs.getString("difficulty"));
+                    questions.add(question);
+                }
+            }
+
+            // Load options only for these questions
+            for (Question question : questions) {
+                question.setOptions(new QuestionDao().getOptionsByQuestionId(question.getId()));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return questions;
+    }
+
+    public int getRoomQuestionCount(long roomId) {
+        String query = "SELECT COUNT(*) FROM room_questions WHERE room_id = ?";
+        try (Connection conn = dbConnection.getCon();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setLong(1, roomId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

@@ -6,6 +6,7 @@ import org.quizproject.quizproject.Models.Option;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,4 +104,54 @@ public class QuestionDao {
         return options;
     }
 
+    // Add method to get question count
+    public int getQuestionCount(long categoryId) {
+        String query = "SELECT COUNT(*) FROM questions WHERE category_id = ?";
+        try (Connection conn = dbConnection.getCon();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setLong(1, categoryId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    // Add paginated question loading
+    public List<Question> getQuestionsByCategory(long categoryId, int offset, int limit) {
+        List<Question> questions = new ArrayList<>();
+        String query = "SELECT * FROM questions WHERE category_id = ? LIMIT ? OFFSET ?";
+
+        try (Connection conn = dbConnection.getCon();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setLong(1, categoryId);
+            stmt.setInt(2, limit);
+            stmt.setInt(3, offset);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Question question = new Question();
+                    question.setId(rs.getLong("id"));
+                    question.setCategoryId(rs.getLong("category_id"));
+                    question.setDifficulty(rs.getString("difficulty"));
+                    question.setContent(rs.getString("content"));
+                    question.setCreatedAt(rs.getString("created_at"));
+                    questions.add(question);
+                }
+            }
+
+            // Load options only for these questions
+            for (Question question : questions) {
+                question.setOptions(getOptionsByQuestionId(question.getId()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return questions;
+    }
 }

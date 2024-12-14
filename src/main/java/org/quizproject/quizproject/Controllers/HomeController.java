@@ -82,6 +82,7 @@ public class HomeController {
     }
 
     private void loadCategories() {
+        // Just load category metadata without questions
         List<Category> categories = categoryDao.getAllCategories();
         int column = 0;
         int row = 0;
@@ -209,6 +210,13 @@ public class HomeController {
 
     private void handleCategoryClick(Category category) {
         try {
+            // Don't load questions here anymore, just get the count
+            int questionCount = categoryDao.getQuestionCount(category.getId());
+            if (questionCount == 0) {
+                showAlert("Error", "No questions available for this category.");
+                return;
+            }
+
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/org/quizproject/quizproject/Main/create-quiz.fxml"));
             AnchorPane page = loader.load();
