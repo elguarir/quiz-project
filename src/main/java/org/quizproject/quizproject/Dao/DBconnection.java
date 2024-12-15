@@ -12,16 +12,6 @@ public class DBconnection {
     private static final String USER = "moha";
     private static final String PASSWORD = "123";
 
-    //el garuir credentials :
-//    private static final String URL = "jdbc:mysql://localhost:3306/quizproject";
-//    private static final String USER = "root";
-//    private static final String PASSWORD = "moha";
-
-    //el aassal credentials :
-    // private static final String URL = "jdbc:mysql://localhost:3306/quizgame";
-    // private static final String USER = "root";
-    // private static final String PASSWORD = "";
-
     private DBconnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

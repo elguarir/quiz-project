@@ -93,7 +93,7 @@ public class CreateQuizController {
         // Validate without loading all questions
         QuestionDao questionDao = new QuestionDao();
         int questionCount = questionDao.getQuestionCount(selectedCategory.getId());
-        
+
         if (questionCount == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Input Error");
@@ -131,21 +131,9 @@ public class CreateQuizController {
         try {
             validateRoomCreation();
             User currentUser = MainApplication.getInstance().getCurrentUser();
-            boolean isPrivate = "Private".equals(roomType.getValue());
-            RadioButton selectedPlayerCount = (RadioButton) playerCount.getSelectedToggle();
-            String maxPlayers = selectedPlayerCount != null ? selectedPlayerCount.getText() : "Dual";
-            int maxPlayerInt = maxPlayers.equals("Dual") ? 2 : maxPlayers.equals("Tri-Battle") ? 3 : 4;
-            int quizTime = (int) quizTimeSlider.getValue();
 
-            Room room = new Room();
-            room.setHostId(currentUser.getId());
-            room.setHostIp(User.getUserIp()); // Use actual host IP instead of localhost
-            room.setPrivate(isPrivate);
-            room.setMaxPlayers(maxPlayerInt);
-            room.setQuizTime(quizTime);
-            room.setCode(isPrivate ? room.generateCode() : ""); // Generate code if private
-
-            // The code will be generated automatically in RoomDao if isPrivate is true
+            // Create room with all necessary data at once
+            Room room = createRoomObject(currentUser);
             RoomDao roomDao = new RoomDao();
             Room createdRoom = roomDao.createRoom(room);
 
@@ -153,24 +141,22 @@ public class CreateQuizController {
                 throw new IllegalArgumentException("Failed to create room");
             }
 
-            // Add host as participant
-            RoomParticipantDao participantDao = new RoomParticipantDao();
-            participantDao.addParticipant(createdRoom.getId(), currentUser.getId(), User.getUserIp());
-
-            // Only load the necessary random questions when actually creating the room
+            // Get questions with options in a single query
             QuestionDao questionDao = new QuestionDao();
-            List<Question> randomQuestions = questionDao.getRandomQuestionsByCategory(selectedCategory.getId(), 10);
+            List<Question> randomQuestions = questionDao.getRandomQuestionsWithOptions(selectedCategory.getId(), 10);
 
             if (randomQuestions.isEmpty()) {
                 throw new IllegalArgumentException("No questions available for this category");
             }
 
-            List<Long> questionIds = randomQuestions.stream()
-                    .map(Question::getId)
-                    .collect(Collectors.toList());
-
+            // Batch insert room questions
             RoomQuestionDao roomQuestionDao = new RoomQuestionDao();
-            roomQuestionDao.saveRoomQuestions(createdRoom.getId(), questionIds);
+            roomQuestionDao.saveRoomQuestions(createdRoom.getId(),
+                    randomQuestions.stream().map(Question::getId).collect(Collectors.toList()));
+
+            // Add host as participant and show waiting room
+            RoomParticipantDao participantDao = new RoomParticipantDao();
+            participantDao.addParticipant(createdRoom.getId(), currentUser.getId(), User.getUserIp());
 
             MainApplication.getInstance().showWaitingRoom(createdRoom);
             dialogStage.close();
@@ -178,6 +164,23 @@ public class CreateQuizController {
         } catch (IllegalArgumentException e) {
             showError(e.getMessage());
         }
+    }
+
+    private Room createRoomObject(User currentUser) {
+        Room room = new Room();
+        room.setHostId(currentUser.getId());
+        room.setHostIp(User.getUserIp());
+        room.setPrivate("Private".equals(roomType.getValue()));
+
+        RadioButton selectedPlayerCount = (RadioButton) playerCount.getSelectedToggle();
+        String maxPlayers = selectedPlayerCount != null ? selectedPlayerCount.getText() : "Dual";
+        room.setMaxPlayers(maxPlayers.equals("Dual") ? 2 : maxPlayers.equals("Tri-Battle") ? 3 : 4);
+
+        room.setQuizTime((int) quizTimeSlider.getValue());
+        if (room.isPrivate()) {
+            room.setCode(room.generateCode());
+        }
+        return room;
     }
 
     private void showError(String message) {

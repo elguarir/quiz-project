@@ -16,16 +16,27 @@ public class RoomQuestionDao {
 
     public void saveRoomQuestions(long roomId, List<Long> questionIds) {
         String query = "INSERT INTO room_questions (room_id, question_id, `order`) VALUES (?, ?, ?)";
-        try (Connection conn = dbConnection.getCon();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            
-            for (int i = 0; i < questionIds.size(); i++) {
-                stmt.setLong(1, roomId);
-                stmt.setLong(2, questionIds.get(i));
-                stmt.setInt(3, i + 1);
-                stmt.addBatch();
+        
+        try (Connection conn = dbConnection.getCon()) {
+            conn.setAutoCommit(false);
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                for (int i = 0; i < questionIds.size(); i++) {
+                    stmt.setLong(1, roomId);
+                    stmt.setLong(2, questionIds.get(i));
+                    stmt.setInt(3, i + 1);
+                    stmt.addBatch();
+                    
+                    if ((i + 1) % 100 == 0 || i == questionIds.size() - 1) {
+                        stmt.executeBatch();
+                    }
+                }
+                conn.commit();
+            } catch (SQLException e) {
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
             }
-            stmt.executeBatch();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class QuestionDao {
     private final DBconnection dbConnection = DBconnection.getInstance();
@@ -150,6 +152,63 @@ public class QuestionDao {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        return questions;
+    }
+
+    public List<Question> getRandomQuestionsWithOptions(long categoryId, int limit) {
+        List<Question> questions = new ArrayList<>();
+        String query = """
+            SELECT q.*, o.id as option_id, o.content as option_content, o.is_correct 
+            FROM (
+                SELECT * FROM questions 
+                WHERE category_id = ? 
+                ORDER BY RAND() 
+                LIMIT ?
+            ) q
+            JOIN options o ON q.id = o.question_id
+            ORDER BY q.id, o.id
+        """;
+
+        try (Connection conn = dbConnection.getCon()) {
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                Map<Long, Question> questionMap = new HashMap<>();
+                
+                stmt.setLong(1, categoryId);
+                stmt.setInt(2, limit);
+                
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        long questionId = rs.getLong("id");
+                        Question question = questionMap.computeIfAbsent(questionId, k -> {
+                            Question q = new Question();
+                            try {
+                                q.setId(questionId);
+                                q.setCategoryId(rs.getLong("category_id"));
+                                q.setDifficulty(rs.getString("difficulty"));
+                                q.setContent(rs.getString("content"));
+                                q.setOptions(new ArrayList<>());
+                            } catch (SQLException e) {
+                                throw new RuntimeException("Error creating question object", e);
+                            }
+                            return q;
+                        });
+
+                        Option option = new Option();
+                        option.setId(rs.getLong("option_id"));
+                        option.setContent(rs.getString("option_content"));
+                        option.setCorrect(rs.getBoolean("is_correct"));
+                        option.setQuestionId(questionId);
+                        question.getOptions().add(option);
+                    }
+                }
+                
+                questions.addAll(questionMap.values());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error fetching questions with options", e);
         }
 
         return questions;

@@ -79,7 +79,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="username" layoutX="752.0" layoutY="16.0" textFill="#696767">
+                        <Label fx:id="username" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="702.0" layoutY="16.0" prefHeight="17.0" prefWidth="134.0" textFill="#696767">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
